@@ -38,6 +38,13 @@ jobs:
           JEKYLL_ENV: production
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
 
+      - name: Verify generated waypoint pages
+        run: |
+          expected_count=$(ruby -ryaml -e 'puts YAML.load_file("_data/waypoints.yml").fetch("waypoints").size')
+          actual_count=$(find _site/waypoints -mindepth 2 -maxdepth 2 -name index.html | wc -l)
+          echo "Generated ${actual_count} of ${expected_count} waypoint pages."
+          test "${actual_count}" -eq "${expected_count}"
+
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

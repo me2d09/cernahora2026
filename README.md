@@ -6,7 +6,7 @@ All trip content is loaded from `_data/waypoints.yml`. That file is treated as t
 
 ## Technology
 
-- Jekyll and the GitHub Pages gem
+- Jekyll 3.10
 - Leaflet 1.9.4
 - Vanilla JavaScript and CSS
 - OpenStreetMap tiles as the zero-configuration default
@@ -40,7 +40,7 @@ The generated site is written to `_site/`.
 
 ## GitHub Pages
 
-The site uses a custom Jekyll generator to create waypoint pages directly from `_data/waypoints.yml`. GitHub Pages branch builds run Jekyll in safe mode and do not execute repository plugins, so deployment is handled by `.github/workflows/pages.yml`.
+The site uses a custom Jekyll generator to create waypoint pages directly from `_data/waypoints.yml`. GitHub Pages branch builds and the `github-pages` gem run Jekyll in safe mode and do not execute repository plugins, so deployment uses a direct Jekyll build in `.github/workflows/pages.yml`.
 
 In the repository settings, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. A push to `main` then builds and deploys the site. Pull requests run the same build without deploying.
 
