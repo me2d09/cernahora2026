@@ -241,15 +241,15 @@ filter_options:
   - none_on_jajce_route
   - medium_city_traffic
 waypoints:
-- id: prague-start
-  name: START – Praha
-  short_name: Praha
+- id: revnice-start
+  name: START – Řevnice
+  short_name: Řevnice
   order: 1
   route_group: both
   status: fixed
   position:
-    lat: 50.0755
-    lon: 14.4378
+    lat: 49.9143472 
+    lon: 14.2358422
     precision: waypoint
   location:
     country: Česko

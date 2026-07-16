@@ -1,0 +1,52 @@
+direct_routes:
+  - id: serbia
+    name: Přes Maďarsko a Srbsko
+    color: "#e63946"
+    description: Budapešť – Bělehrad – A2 – Zlatibor – Dobrakovo – Podgorica
+    via:
+      - lat: 44.207049
+        lon: 20.264294
+        name: A2 Miloš Veliki – Brančić
+        optional: true
+      - lat: 43.143490
+        lon: 19.780070
+        name: Hraniční přechod Gostun–Dobrakovo
+        optional: false
+
+  - id: croatia-coast
+    name: Přes Chorvatsko a pobřeží
+    color: "#277da1"
+    description: Graz – Záhřeb – Split – Pelješac – Dubrovník – Budva
+    via:
+      - lat: 42.931920
+        lon: 17.535450
+        name: Pelješacký most
+        optional: false
+      - lat: 42.481010
+        lon: 18.455840
+        name: Hraniční přechod Karasovići–Debeli Brijeg
+        optional: true
+
+  - id: bosnia-mostar
+    name: Přes Sarajevo, Mostar a Trebinje
+    color: "#43aa8b"
+    description: Slavonski Brod – Sarajevo – Mostar – Trebinje – Nikšić
+    via:
+      - lat: 43.644818
+        lon: 17.759550
+        name: M17 – Jablanica–Mostar
+        optional: false
+      - lat: 42.861940
+        lon: 18.479800
+        name: Hraniční přechod Deleuša–Vraćenovići
+        optional: false
+
+  - id: bosnia-foca
+    name: Přes Sarajevo, Foču a Šćepan Polje
+    color: "#f8961e"
+    description: Sarajevo – Trnovo – Foča – Šćepan Polje – Plužine – Nikšić
+    via:
+      - lat: 43.349070
+        lon: 18.844620
+        name: Hraniční přechod Hum–Šćepan Polje
+        optional: false
