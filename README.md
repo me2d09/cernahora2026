@@ -55,31 +55,20 @@ Internal assets use Jekyll's `relative_url` filter and therefore work under the 
 
 ## Map provider configuration
 
-The default configuration uses OpenStreetMap raster tiles:
+The map includes a visible base-layer switcher. OpenStreetMap and Mapy.com are both configured, while `provider` controls which one is selected on initial load:
 
 ```yaml
 map:
   provider: openstreetmap
-  mapy_api_key: ""
+  mapy_api_key: "PUBLIC_DOMAIN_RESTRICTED_WEB_KEY"
   mapy_mapset: outdoor
 ```
 
-To use Mapy.com:
-
-1. Create an API project and a web API key at [developer.mapy.com](https://developer.mapy.com/).
-2. Restrict and monitor the key according to the provider documentation.
-3. Set `provider` to `mapy`.
-4. Set `mapy_api_key` to the project key.
-5. Review the current Mapy.com attribution requirements before deployment.
-
-```yaml
-map:
-  provider: mapy
-  mapy_api_key: "YOUR_PUBLIC_WEB_API_KEY"
-  mapy_mapset: outdoor
-```
+Set `provider: mapy` to make Mapy.com the initial layer without removing the OpenStreetMap option.
 
 Available Mapy.com raster map sets include `basic`, `outdoor`, `winter`, and `aerial`. Mapy.com calls require an API key and consume project credits. A key embedded in a static GitHub Pages site is visible to visitors, so it must be a web key intended for client-side use and protected with the restrictions supported by Mapy.com.
+
+The Mapy.com logo and copyright attribution are added only while the Mapy.com layer is active. OpenStreetMap displays its own attribution when selected.
 
 ## Waypoint presentation
 

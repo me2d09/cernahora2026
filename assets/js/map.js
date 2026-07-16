@@ -28,7 +28,10 @@
 
   const state = {
     activeGroups: new Set(),
+    activeProvider: null,
+    baseLayers: {},
     map: null,
+    mapyLogoControl: null,
     markers: new Map(),
     selectedId: null
   };
@@ -60,11 +63,9 @@
     });
 
     L.control.zoom({ position: "topright" }).addTo(state.map);
-    const tileLayer = createTileLayer();
-    tileLayer.layer.addTo(state.map);
-    if (tileLayer.usesMapy) {
-      addMapyLogoControl();
-    }
+    state.baseLayers = createBaseLayers();
+    bindProviderSwitch();
+    setMapProvider(getInitialProvider());
     addVisibleMarkers(waypoints);
     fitVisibleMarkers();
 
@@ -77,11 +78,20 @@
     });
   }
 
-  function createTileLayer() {
+  function createBaseLayers() {
     const config = tripData.mapConfig || {};
-    const useMapy = config.provider === "mapy" && config.mapyApiKey;
+    const layers = {
+      openstreetmap: L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
+        }
+      )
+    };
 
-    if (useMapy) {
+    if (config.mapyApiKey) {
       const mapset = config.mapyMapset || "outdoor";
       const tileUrl =
         "https://api.mapy.com/v1/maptiles/" +
@@ -90,27 +100,80 @@
         encodeURIComponent(config.mapyApiKey) +
         "&lang=cs";
 
-      return {
-        usesMapy: true,
-        layer: L.tileLayer(tileUrl, {
-          maxZoom: 19,
-          attribution:
-            '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Seznam.cz a.s. and others</a>'
-        })
-      };
-    }
-
-    return {
-      usesMapy: false,
-      layer: L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      layers.mapy = L.tileLayer(tileUrl, {
         maxZoom: 19,
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
-      })
-    };
+          '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Seznam.cz a.s. and others</a>'
+      });
+    }
+
+    return layers;
   }
 
-  function addMapyLogoControl() {
+  function getInitialProvider() {
+    const configuredProvider =
+      (tripData.mapConfig && tripData.mapConfig.provider) || "openstreetmap";
+
+    return state.baseLayers[configuredProvider]
+      ? configuredProvider
+      : "openstreetmap";
+  }
+
+  function bindProviderSwitch() {
+    document.querySelectorAll("[data-map-provider]").forEach(function (button) {
+      const provider = button.dataset.mapProvider;
+
+      if (!state.baseLayers[provider]) {
+        button.disabled = true;
+        button.title = "Tento mapový podklad není nakonfigurovaný.";
+        return;
+      }
+
+      button.addEventListener("click", function () {
+        setMapProvider(provider);
+      });
+    });
+  }
+
+  function setMapProvider(provider) {
+    const nextLayer = state.baseLayers[provider];
+    if (!nextLayer || state.activeProvider === provider) {
+      return;
+    }
+
+    if (state.activeProvider && state.baseLayers[state.activeProvider]) {
+      state.map.removeLayer(state.baseLayers[state.activeProvider]);
+    }
+
+    nextLayer.addTo(state.map);
+    state.activeProvider = provider;
+    updateProviderButtons();
+    updateMapyLogo();
+  }
+
+  function updateProviderButtons() {
+    document.querySelectorAll("[data-map-provider]").forEach(function (button) {
+      const isActive = button.dataset.mapProvider === state.activeProvider;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  function updateMapyLogo() {
+    if (state.activeProvider === "mapy") {
+      if (!state.mapyLogoControl) {
+        state.mapyLogoControl = createMapyLogoControl();
+      }
+      state.map.addControl(state.mapyLogoControl);
+      return;
+    }
+
+    if (state.mapyLogoControl) {
+      state.map.removeControl(state.mapyLogoControl);
+    }
+  }
+
+  function createMapyLogoControl() {
     const MapyLogoControl = L.Control.extend({
       options: {
         position: "bottomleft"
@@ -130,7 +193,7 @@
       }
     });
 
-    state.map.addControl(new MapyLogoControl());
+    return new MapyLogoControl();
   }
 
   function addVisibleMarkers(visibleWaypoints) {

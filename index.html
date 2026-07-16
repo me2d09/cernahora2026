@@ -68,6 +68,25 @@ map_page: true
         <p class="map-message" id="map-error" hidden>
           Mapu se nepodařilo načíst. Místa můžeš dál procházet v seznamu.
         </p>
+        <div class="map-provider-switch" aria-label="Podkladová mapa">
+          <span>Podklad</span>
+          <button
+            class="provider-button"
+            type="button"
+            data-map-provider="openstreetmap"
+            aria-pressed="false"
+          >
+            OpenStreetMap
+          </button>
+          <button
+            class="provider-button"
+            type="button"
+            data-map-provider="mapy"
+            aria-pressed="false"
+          >
+            Mapy.com
+          </button>
+        </div>
         <div class="map-legend" aria-hidden="true">
           <span><i class="legend-dot legend-dot--outbound"></i>Tam</span>
           <span><i class="legend-dot legend-dot--return"></i>Zpět</span>

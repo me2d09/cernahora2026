@@ -302,6 +302,60 @@ h1 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
+.map-provider-switch {
+  position: absolute;
+  z-index: 500;
+  top: 0.8rem;
+  left: 0.8rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.3rem;
+  border: 1px solid rgba(29, 43, 37, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.95);
+  box-shadow: 0 8px 25px rgba(29, 43, 37, 0.14);
+}
+
+.map-provider-switch > span {
+  padding: 0 0.45rem;
+  color: var(--ink-muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.provider-button {
+  padding: 0.45rem 0.65rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink-muted);
+  background: transparent;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.provider-button:hover,
+.provider-button:focus-visible {
+  color: var(--green);
+}
+
+.provider-button:focus-visible {
+  outline: 3px solid rgba(232, 117, 61, 0.42);
+  outline-offset: 2px;
+}
+
+.provider-button.is-active {
+  color: white;
+  background: var(--green);
+}
+
+.provider-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
 .map-legend {
   position: absolute;
   z-index: 500;
@@ -1025,6 +1079,14 @@ h1 {
   .map-legend {
     right: 50%;
     transform: translateX(50%);
+  }
+
+  .map-provider-switch > span {
+    display: none;
+  }
+
+  .provider-button {
+    padding-inline: 0.55rem;
   }
 
   .waypoint-list {

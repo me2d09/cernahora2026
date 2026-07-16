@@ -6,7 +6,7 @@ baseurl: "/cernahora2026"
 
 map:
   provider: openstreetmap
-  mapy_api_key: ""
+  mapy_api_key: "e5Q4FnVqeJSnxOHc_XNBB-PqI_7RSRDr1l0GEpUgflE"
   mapy_mapset: outdoor
 
 exclude:
