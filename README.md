@@ -105,16 +105,16 @@ This keeps `_data/waypoints.yml` as the only content source. Adding, removing, o
 
 ## Routing
 
-The route planner accepts two waypoint selections:
+The route planner accepts two to five ordered waypoint selections:
 
 1. open a waypoint card and select **Přidat do trasy**;
-2. repeat for the destination;
-3. optionally swap or remove either point;
+2. repeat for the destination and up to three intermediate stops;
+3. optionally reverse the full order or remove individual points;
 4. select **Spočítat trasu**.
 
-The Mapy.com adapter in `assets/js/routing.js` calls the car-fast routing endpoint and requests GeoJSON. `assets/js/map.js` renders the returned feature through Leaflet, fits the viewport to the route, and displays its distance and estimated driving time.
+The first selection is sent as the start, the last as the destination, and all points between them as ordered Mapy.com routing waypoints. The Mapy.com adapter in `assets/js/routing.js` calls the car-fast routing endpoint and requests GeoJSON. `assets/js/map.js` renders the returned feature through Leaflet, fits the viewport to the route, and displays its distance and estimated driving time.
 
-Changing or removing a selected point clears the previous result and aborts any in-progress request. The planner currently accepts exactly two points. Mapy.com supports up to 15 intermediate waypoints, so ordered multi-stop routing can be added later without replacing the provider adapter.
+Changing, reordering, or removing a selected point clears the previous result and aborts any in-progress request. The UI intentionally limits a route to five points even though the Mapy.com API supports more.
 
 Mapy.com routing attribution and the provider logo remain visible while a calculated route is displayed, including when the selected base map is OpenStreetMap.
 

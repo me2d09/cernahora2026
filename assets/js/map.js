@@ -35,6 +35,7 @@
       return [waypoint.id, waypoint];
     })
   );
+  const MAX_ROUTE_POINTS = 5;
 
   const state = {
     activeGroups: new Set(),
@@ -266,7 +267,7 @@
     const markerContent =
       routePosition >= 0
         ? '<strong class="trip-marker-route-label">' +
-          (routePosition === 0 ? "A" : "B") +
+          getRoutePointLabel(routePosition) +
           "</strong>"
         : '<span aria-hidden="true">' +
           escapeHtml(iconDefinition.emoji || "•") +
@@ -354,14 +355,14 @@
       "button",
       "popup-link popup-link--primary",
       routeIndex >= 0
-        ? "V trase jako " + (routeIndex === 0 ? "A" : "B")
-        : state.route.selectedIds.length >= 2
-          ? "Trasa už má dva body"
+        ? "V trase jako " + getRoutePointLabel(routeIndex)
+        : state.route.selectedIds.length >= MAX_ROUTE_POINTS
+          ? "Trasa už má pět bodů"
           : "Přidat do trasy"
     );
     addToRouteButton.type = "button";
     addToRouteButton.disabled =
-      routeIndex >= 0 || state.route.selectedIds.length >= 2;
+      routeIndex >= 0 || state.route.selectedIds.length >= MAX_ROUTE_POINTS;
     addToRouteButton.addEventListener("click", function () {
       addWaypointToRoute(waypoint.id);
       state.map.closePopup();
@@ -534,7 +535,7 @@
   function addWaypointToRoute(waypointId) {
     if (
       state.route.selectedIds.includes(waypointId) ||
-      state.route.selectedIds.length >= 2
+      state.route.selectedIds.length >= MAX_ROUTE_POINTS
     ) {
       return;
     }
@@ -557,7 +558,7 @@
   }
 
   function swapRoutePoints() {
-    if (state.route.selectedIds.length !== 2) {
+    if (state.route.selectedIds.length < 2) {
       return;
     }
 
@@ -578,7 +579,7 @@
 
   async function calculateRoute() {
     if (
-      state.route.selectedIds.length !== 2 ||
+      state.route.selectedIds.length < 2 ||
       !state.routingProvider ||
       state.route.loading
     ) {
@@ -590,10 +591,11 @@
     }
 
     clearRouteResult();
-    const start = waypointsById.get(state.route.selectedIds[0]);
-    const end = waypointsById.get(state.route.selectedIds[1]);
+    const routeWaypoints = state.route.selectedIds.map(function (waypointId) {
+      return waypointsById.get(waypointId);
+    });
 
-    if (!start || !end) {
+    if (routeWaypoints.some(function (waypoint) { return !waypoint; })) {
       state.route.error = "Vybrané body už nejsou dostupné.";
       renderRoutePlanner();
       return;
@@ -605,7 +607,7 @@
     renderRoutePlanner();
 
     try {
-      const result = await state.routingProvider.calculate(start, end, {
+      const result = await state.routingProvider.calculate(routeWaypoints, {
         signal: state.route.abortController.signal
       });
 
@@ -686,7 +688,8 @@
     }
 
     routePointsElement.replaceChildren();
-    ["A", "B"].forEach(function (label, index) {
+    Array.from({ length: MAX_ROUTE_POINTS }).forEach(function (_, index) {
+      const label = getRoutePointLabel(index);
       const waypointId = state.route.selectedIds[index];
       const waypoint = waypointId && waypointsById.get(waypointId);
       const slot = createElement(
@@ -704,7 +707,7 @@
             ? waypoint.short_name || waypoint.name
             : index === 0
               ? "Vyber začátek"
-              : "Vyber cíl"
+              : "Další bod (volitelný)"
         )
       );
       copy.appendChild(
@@ -738,13 +741,13 @@
       routePointsElement.appendChild(slot);
     });
 
-    const hasTwoPoints = state.route.selectedIds.length === 2;
+    const hasEnoughPoints = state.route.selectedIds.length >= 2;
     routeCalculateButton.disabled =
-      !hasTwoPoints || state.route.loading || !state.routingProvider;
+      !hasEnoughPoints || state.route.loading || !state.routingProvider;
     routeCalculateButton.textContent = state.route.loading
       ? "Počítám…"
       : "Spočítat trasu";
-    routeSwapButton.disabled = !hasTwoPoints || state.route.loading;
+    routeSwapButton.disabled = !hasEnoughPoints || state.route.loading;
     routeClearButton.disabled =
       state.route.selectedIds.length === 0 && !state.route.layer;
 
@@ -767,11 +770,13 @@
         " · přibližně " +
         formatRouteDuration(state.route.result.duration) +
         " autem";
-    } else if (hasTwoPoints) {
+    } else if (hasEnoughPoints) {
       routeStatusElement.textContent =
-        "Body jsou připravené. Teď můžeš spočítat trasu.";
+        formatRoutePointCount(state.route.selectedIds.length) +
+        " jsou připravené. Teď můžeš spočítat trasu.";
     } else {
-      routeStatusElement.textContent = "Přidej dva body z jejich karty na mapě.";
+      routeStatusElement.textContent =
+        "Přidej alespoň dva body z jejich karty na mapě (maximálně pět).";
     }
   }
 
@@ -845,6 +850,14 @@
     return minutes === 0
       ? hours + " h"
       : hours + " h " + minutes + " min";
+  }
+
+  function getRoutePointLabel(index) {
+    return String.fromCharCode(65 + index);
+  }
+
+  function formatRoutePointCount(count) {
+    return count === 5 ? "5 bodů" : count + " body";
   }
 
   function getVisibleWaypoints() {

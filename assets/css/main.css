@@ -303,21 +303,16 @@ h1 {
 
 .route-planner-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 0.55rem;
   align-items: stretch;
 }
 
 .route-points {
-  display: contents;
-}
-
-.route-point:nth-child(1) {
-  grid-column: 1;
-}
-
-.route-point:nth-child(2) {
-  grid-column: 3;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
 }
 
 .route-point {
@@ -404,7 +399,7 @@ h1 {
 }
 
 .route-calculate-button {
-  grid-column: 4;
+  grid-column: 3;
   min-width: 140px;
   padding: 0.65rem 1rem;
   border: 1px solid var(--green);
@@ -1207,11 +1202,11 @@ h1 {
 
 @media (max-width: 900px) {
   .route-planner-body {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto auto;
   }
 
-  .route-calculate-button {
-    grid-column: 1 / -1;
+  .route-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .map-shell {
@@ -1279,27 +1274,21 @@ h1 {
   }
 
   .route-planner-body {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .route-points {
-    display: grid;
-    grid-column: 1;
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
     gap: 0.45rem;
-  }
-
-  .route-point:nth-child(1),
-  .route-point:nth-child(2) {
-    grid-column: auto;
   }
 
   .route-swap-button {
     grid-column: 2;
-    grid-row: 1;
   }
 
   .route-calculate-button {
-    grid-column: 1 / -1;
+    grid-column: 1;
   }
 
   .map-shell {

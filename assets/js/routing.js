@@ -7,11 +7,17 @@
       this.endpoint = "https://api.mapy.com/v1/routing/route";
     }
 
-    async calculate(start, end, options) {
+    async calculate(waypoints, options) {
       if (!this.apiKey) {
         throw new Error("Mapy.com API key is not configured.");
       }
 
+      if (!Array.isArray(waypoints) || waypoints.length < 2) {
+        throw new Error("At least two route points are required.");
+      }
+
+      const start = waypoints[0];
+      const end = waypoints[waypoints.length - 1];
       const parameters = new URLSearchParams({
         apikey: this.apiKey,
         start: formatPosition(start),
@@ -19,6 +25,10 @@
         routeType: "car_fast",
         format: "geojson",
         lang: "cs"
+      });
+
+      waypoints.slice(1, -1).forEach(function (waypoint) {
+        parameters.append("waypoints", formatPosition(waypoint));
       });
 
       const response = await fetch(this.endpoint + "?" + parameters, {
@@ -75,4 +85,3 @@
 
   window.MapyRoutingProvider = MapyRoutingProvider;
 })();
-
