@@ -4,25 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f4f1e8">
-    <meta name="description" content="{{ page.description | default: site.description | escape }}">
-    <title>{{ page.title | default: site.title | escape }}</title>
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://tile.openstreetmap.org">
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      crossorigin=""
-    >
+    {% assign waypoint_page_data = page.waypoint %}
+    <meta name="description" content="{{ waypoint_page_data.summary | default: page.description | default: site.description | escape }}">
+    <title>{% if waypoint_page_data %}{{ waypoint_page_data.short_name | default: waypoint_page_data.name | escape }} · {% endif %}{{ page.title | default: site.title | escape }}</title>
+    {% if page.map_page %}
+      <link rel="preconnect" href="https://unpkg.com">
+      <link rel="preconnect" href="https://tile.openstreetmap.org">
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+      >
+    {% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
     {{ content }}
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      crossorigin=""
-    ></script>
-    <script src="{{ '/assets/js/map.js' | relative_url }}"></script>
+    {% if page.map_page %}
+      <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        crossorigin=""
+      ></script>
+      <script src="{{ '/assets/js/map.js' | relative_url }}"></script>
+    {% endif %}
   </body>
 </html>
-

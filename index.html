@@ -2,6 +2,7 @@
 layout: default
 title: Černá Hora 2026
 description: Mapa kandidátních zastávek rodinné cesty z Prahy do Černé Hory a zpět.
+map_page: true
 ---
 
 <header class="site-header">
@@ -41,17 +42,15 @@ description: Mapa kandidátních zastávek rodinné cesty z Prahy do Černé Hor
     </div>
 
     <div class="map-filters" aria-label="Filtrování bodů">
-      <button class="filter-button is-active" type="button" data-route-filter="all" aria-pressed="true">
-        Všechna místa
-      </button>
+      <span class="filter-label">Zobrazit:</span>
       <button class="filter-button" type="button" data-route-filter="outbound" aria-pressed="false">
-        Cesta tam
+        Cesta tam <span class="filter-count" data-filter-count="outbound"></span>
       </button>
       <button class="filter-button" type="button" data-route-filter="return" aria-pressed="false">
-        Cesta zpět
+        Cesta zpět <span class="filter-count" data-filter-count="return"></span>
       </button>
       <button class="filter-button" type="button" data-route-filter="base" aria-pressed="false">
-        Černá Hora
+        Při pobytu <span class="filter-count" data-filter-count="base"></span>
       </button>
     </div>
 
@@ -102,6 +101,7 @@ description: Mapa kandidátních zastávek rodinné cesty z Prahy do Černé Hor
   "mapDefaults": {{ site.data.waypoints.map_defaults | jsonify }},
   "iconRegistry": {{ site.data.waypoints.icon_registry | jsonify }},
   "waypoints": {{ site.data.waypoints.waypoints | jsonify }},
+  "waypointBaseUrl": {{ '/waypoints/' | relative_url | jsonify }},
   "mapConfig": {
     "provider": {{ site.map.provider | default: "openstreetmap" | jsonify }},
     "mapyApiKey": {{ site.map.mapy_api_key | default: "" | jsonify }},
@@ -109,4 +109,3 @@ description: Mapa kandidátních zastávek rodinné cesty z Prahy do Černé Hor
   }
 }
 </script>
-

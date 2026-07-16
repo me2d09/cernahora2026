@@ -40,16 +40,18 @@ The generated site is written to `_site/`.
 
 ## GitHub Pages
 
-The repository uses the supported `github-pages` gem and does not require a custom build pipeline.
+The site uses a custom Jekyll generator to create waypoint pages directly from `_data/waypoints.yml`. GitHub Pages branch builds run Jekyll in safe mode and do not execute repository plugins, so deployment is handled by `.github/workflows/pages.yml`.
 
-Before publishing a project site, set the repository path in `_config.yml`:
+In the repository settings, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. A push to `main` then builds and deploys the site. Pull requests run the same build without deploying.
+
+The production address and project path are configured in `_config.yml`:
 
 ```yaml
-url: "https://your-account.github.io"
-baseurl: "/your-repository"
+url: "https://me2d09.github.io"
+baseurl: "/cernahora2026"
 ```
 
-Internal assets use Jekyll's `relative_url` filter and therefore work under a GitHub Pages project subpath.
+Internal assets use Jekyll's `relative_url` filter and therefore work under the GitHub Pages project subpath.
 
 ## Map provider configuration
 
@@ -86,6 +88,8 @@ Each valid entry from `waypoints` is rendered in two places:
 - as an accessible button in the waypoint list;
 - as a Leaflet marker with a compact popup card.
 
+Prague and XIO Apartments are fixed map points and remain visible at all times. Outbound, return, and stay locations are independent optional layers. Enabling a layer fits the viewport only to that layer's optional points, so fixed Prague does not affect the outbound or return zoom. Empty optional layers are shown with a zero count and disabled until data is added.
+
 The popup uses existing fields when available:
 
 - featured photo and its license source page;
@@ -93,8 +97,21 @@ The popup uses existing fields when available:
 - short name and summary;
 - `wow`, `kids`, and recommended visit duration;
 - external map and navigation links.
+- an internal link to the complete waypoint page.
 
 Missing optional fields are handled gracefully. Coordinates are validated in the browser before a waypoint is displayed.
+
+## Waypoint detail pages
+
+The `_plugins/waypoint_page_generator.rb` generator reads every record in `_data/waypoints.yml` during the Jekyll build and creates a virtual page at `/waypoints/<id>/`. The generated page receives the complete waypoint record and renders it through `_layouts/waypoint.html`.
+
+The detail pages include all waypoint fields: identity and classification, location and coordinates, summary, highlights, activities, family suitability, visit recommendations, swimming information, logistics, ratings, tags, external links, notes, and every available photo with its source and license note.
+
+This keeps `_data/waypoints.yml` as the only content source. Adding, removing, or renaming a waypoint there automatically changes the generated pages on the next build; no matching Markdown file is needed.
+
+```text
+/cernahora2026/waypoints/stopica-cave/
+```
 
 ## Future routing
 
@@ -116,7 +133,13 @@ The routing API accepts up to 15 intermediate waypoints per request. Provider-sp
 ├── _data/
 │   └── waypoints.yml
 ├── _layouts/
-│   └── default.html
+│   ├── default.html
+│   └── waypoint.html
+├── _plugins/
+│   └── waypoint_page_generator.rb
+├── .github/
+│   └── workflows/
+│       └── pages.yml
 ├── assets/
 │   ├── css/
 │   │   └── main.css
@@ -127,4 +150,3 @@ The routing API accepts up to 15 intermediate waypoints per request. Provider-sp
 ├── README.md
 └── index.html
 ```
-

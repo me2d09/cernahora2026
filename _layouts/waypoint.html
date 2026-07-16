@@ -1,0 +1,233 @@
+---
+layout: default
+---
+
+{% assign waypoint = page.waypoint %}
+
+<header class="site-header">
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Černá Hora 2026 – úvod">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 48 48" role="img">
+        <path d="M7 36 19 15l7 12 5-8 10 17H7Z" fill="currentColor"/>
+        <path d="m16 25 3-6 4 7-3-2-2 3-2-2Z" fill="#f4f1e8"/>
+      </svg>
+    </span>
+    <span>
+      <strong>Černá Hora</strong>
+      <small>roadtrip 2026</small>
+    </span>
+  </a>
+  <nav class="site-nav" aria-label="Hlavní navigace">
+    <a href="{{ '/' | relative_url }}#map-section">Mapa</a>
+  </nav>
+</header>
+
+{% if waypoint %}
+  {% assign icon = site.data.waypoints.icon_registry[waypoint.presentation.icon_id] %}
+  <main class="waypoint-page">
+    <nav class="breadcrumbs" aria-label="Drobečková navigace">
+      <a href="{{ '/' | relative_url }}#map-section">Mapa</a>
+      <span aria-hidden="true">/</span>
+      <span>{{ waypoint.short_name | default: waypoint.name }}</span>
+    </nav>
+
+    <header class="waypoint-hero">
+      <div class="waypoint-hero-copy">
+        <div class="waypoint-kicker">
+          <span class="detail-symbol" style="--marker-color: {{ icon.color | default: '#215c45' }}">
+            {{ icon.emoji | default: '•' }}
+          </span>
+          <span>{{ waypoint.location.country }} · {{ waypoint.location.region }}</span>
+        </div>
+        <h1>{{ waypoint.name }}</h1>
+        <p>{{ waypoint.summary }}</p>
+        <div class="detail-badges">
+          <span>{{ waypoint.route_group }}</span>
+          <span>{{ waypoint.status }}</span>
+          <span>{{ waypoint.presentation.category }}</span>
+        </div>
+      </div>
+
+      {% assign featured_photo = waypoint.photos | where: "featured", true | first %}
+      {% unless featured_photo %}
+        {% assign featured_photo = waypoint.photos | first %}
+      {% endunless %}
+      {% if featured_photo %}
+        <figure class="waypoint-hero-photo">
+          <img src="{{ featured_photo.url }}" alt="{{ featured_photo.caption | escape }}" referrerpolicy="no-referrer">
+          <figcaption>
+            {{ featured_photo.caption }}
+            {% if featured_photo.source_page %}
+              · <a href="{{ featured_photo.source_page }}" target="_blank" rel="noopener noreferrer">zdroj a licence</a>
+            {% endif %}
+          </figcaption>
+        </figure>
+      {% endif %}
+    </header>
+
+    <div class="waypoint-detail-grid">
+      <div class="waypoint-main-content">
+        {% if waypoint.highlights.size > 0 %}
+          <section class="detail-section">
+            <p class="eyebrow">To nejzajímavější</p>
+            <h2>Proč se zastavit</h2>
+            <ul class="feature-list">
+              {% for highlight in waypoint.highlights %}
+                <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+
+        {% if waypoint.activities.size > 0 %}
+          <section class="detail-section">
+            <p class="eyebrow">Program</p>
+            <h2>Co se tu dá dělat</h2>
+            <div class="tag-list">
+              {% for activity in waypoint.activities %}
+                <span>{{ activity }}</span>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <section class="detail-section">
+          <p class="eyebrow">Prakticky</p>
+          <h2>Návštěva a rodina</h2>
+          <dl class="data-grid">
+            <div><dt>Doporučená délka</dt><dd>{{ waypoint.visit.recommended_duration_min | join: "–" }} min</dd></div>
+            <div><dt>Nejlepší čas</dt><dd>{{ waypoint.visit.best_time | default: "neuvedeno" }}</dd></div>
+            <div><dt>Davy v srpnu</dt><dd>{{ waypoint.visit.crowds_in_august | default: "neuvedeno" }}</dd></div>
+            <div><dt>Vhodnost pro děti</dt><dd>{{ waypoint.family.child_fit }}/5</dd></div>
+            <div><dt>Vhodnost pro prarodiče</dt><dd>{{ waypoint.family.grandparent_fit }}/5</dd></div>
+            <div><dt>Uvažovaný věk dětí</dt><dd>{{ waypoint.family.child_ages_considered | join: ", " }} let</dd></div>
+          </dl>
+        </section>
+
+        <section class="detail-section">
+          <p class="eyebrow">Voda</p>
+          <h2>Koupání</h2>
+          <dl class="data-grid">
+            <div><dt>Dostupné</dt><dd>{{ waypoint.swimming.available }}</dd></div>
+            <div><dt>Typ</dt><dd>{{ waypoint.swimming.type | default: "neuvedeno" }}</dd></div>
+            <div><dt>Jistota informace</dt><dd>{{ waypoint.swimming.confidence | default: "neuvedeno" }}</dd></div>
+          </dl>
+          {% if waypoint.swimming.notes %}
+            <p class="detail-note">{{ waypoint.swimming.notes }}</p>
+          {% endif %}
+        </section>
+
+        <section class="detail-section">
+          <p class="eyebrow">Cesta a nocleh</p>
+          <h2>Logistika</h2>
+          <dl class="data-grid">
+            <div><dt>Zajížďka</dt><dd>{{ waypoint.logistics.detour_level | default: "neuvedeno" }}</dd></div>
+            <div><dt>Parkování</dt><dd>{{ waypoint.logistics.parking | default: "neuvedeno" }}</dd></div>
+            <div><dt>Nocleh</dt><dd>{{ waypoint.logistics.overnight_score }}/5</dd></div>
+            <div><dt>Typ ubytování</dt><dd>{{ waypoint.logistics.accommodation_style | default: "neuvedeno" }}</dd></div>
+          </dl>
+          {% if waypoint.logistics.road_note %}
+            <p class="detail-note">{{ waypoint.logistics.road_note }}</p>
+          {% endif %}
+        </section>
+
+        {% if waypoint.photos.size > 0 %}
+          <section class="detail-section">
+            <p class="eyebrow">Galerie</p>
+            <h2>Všechny fotografie</h2>
+            <div class="photo-gallery">
+              {% for photo in waypoint.photos %}
+                <figure>
+                  <img src="{{ photo.url }}" alt="{{ photo.caption | escape }}" loading="lazy" referrerpolicy="no-referrer">
+                  <figcaption>
+                    <strong>{{ photo.caption }}</strong>
+                    <span>{{ photo.provider }}{% if photo.featured %} · titulní fotografie{% endif %}</span>
+                    {% if photo.license_note %}<span>{{ photo.license_note }}</span>{% endif %}
+                    {% if photo.source_page %}
+                      <a href="{{ photo.source_page }}" target="_blank" rel="noopener noreferrer">Zdroj a licence</a>
+                    {% endif %}
+                  </figcaption>
+                </figure>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        {% if waypoint.notes %}
+          <section class="detail-section">
+            <p class="eyebrow">Poznámky</p>
+            <h2>Další informace</h2>
+            <p>{{ waypoint.notes }}</p>
+          </section>
+        {% endif %}
+      </div>
+
+      <aside class="waypoint-sidebar">
+        <section class="detail-card">
+          <p class="eyebrow">Hodnocení</p>
+          <dl class="rating-list">
+            <div><dt>Wow efekt</dt><dd>{{ waypoint.ratings.wow }}/5</dd></div>
+            <div><dt>Pro děti</dt><dd>{{ waypoint.ratings.kids }}/5</dd></div>
+            <div><dt>Koupání</dt><dd>{{ waypoint.ratings.swimming }}/5</dd></div>
+            <div><dt>Nocleh</dt><dd>{{ waypoint.ratings.overnight }}/5</dd></div>
+            <div><dt>Vhodnost trasy</dt><dd>{{ waypoint.ratings.route_fit }}/5</dd></div>
+          </dl>
+        </section>
+
+        <section class="detail-card">
+          <p class="eyebrow">Poloha</p>
+          <dl class="metadata-list">
+            <div><dt>Země</dt><dd>{{ waypoint.location.country }} ({{ waypoint.location.country_code }})</dd></div>
+            <div><dt>Region</dt><dd>{{ waypoint.location.region }}</dd></div>
+            <div><dt>Souřadnice</dt><dd>{{ waypoint.position.lat }}, {{ waypoint.position.lon }}</dd></div>
+            <div><dt>Přesnost</dt><dd>{{ waypoint.position.precision }}</dd></div>
+          </dl>
+          <div class="detail-actions">
+            {% if waypoint.links.openstreetmap %}
+              <a href="{{ waypoint.links.openstreetmap }}" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+            {% endif %}
+            {% if waypoint.links.google_maps %}
+              <a class="is-primary" href="{{ waypoint.links.google_maps }}" target="_blank" rel="noopener noreferrer">Navigovat</a>
+            {% endif %}
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <p class="eyebrow">Datový záznam</p>
+          <dl class="metadata-list">
+            <div><dt>ID</dt><dd><code>{{ waypoint.id }}</code></dd></div>
+            <div><dt>Krátký název</dt><dd>{{ waypoint.short_name }}</dd></div>
+            <div><dt>Pořadí</dt><dd>{{ waypoint.order }}</dd></div>
+            <div><dt>Skupina trasy</dt><dd>{{ waypoint.route_group }}</dd></div>
+            <div><dt>Stav</dt><dd>{{ waypoint.status }}</dd></div>
+            <div><dt>Kategorie</dt><dd>{{ waypoint.presentation.category }}</dd></div>
+            <div><dt>ID ikony</dt><dd>{{ waypoint.presentation.icon_id }}</dd></div>
+          </dl>
+        </section>
+
+        {% if waypoint.tags.size > 0 %}
+          <section class="detail-card">
+            <p class="eyebrow">Tagy</p>
+            <div class="tag-list">
+              {% for tag in waypoint.tags %}
+                <span>{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+      </aside>
+    </div>
+  </main>
+{% else %}
+  <main class="waypoint-page">
+    <section class="missing-waypoint">
+      <h1>Místo nebylo nalezeno</h1>
+      <a href="{{ '/' | relative_url }}#map-section">Zpět na mapu</a>
+    </section>
+  </main>
+{% endif %}
+
+<footer class="site-footer">
+  <p>Rodinný plán cesty · léto 2026</p>
+  <a href="{{ '/' | relative_url }}#map-section">Zpět na mapu</a>
+</footer>

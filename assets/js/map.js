@@ -27,13 +27,14 @@
     : [];
 
   const state = {
-    activeFilter: "all",
+    activeGroups: new Set(),
     map: null,
     markers: new Map(),
     selectedId: null
   };
 
-  renderWaypointList(waypoints);
+  renderWaypointList(getVisibleWaypoints());
+  updateFilterCounts();
   bindFilters();
 
   if (typeof window.L === "undefined") {
@@ -238,12 +239,21 @@
     body.appendChild(stats);
 
     const actions = createElement("div", "popup-actions");
+    actions.appendChild(
+      createLink(
+        "Všechny detaily",
+        getWaypointUrl(waypoint.id),
+        "popup-link popup-link--detail",
+        false
+      )
+    );
     if (waypoint.links && waypoint.links.openstreetmap) {
       actions.appendChild(
         createLink(
           "Otevřít mapu",
           waypoint.links.openstreetmap,
-          "popup-link"
+          "popup-link",
+          true
         )
       );
     }
@@ -252,7 +262,8 @@
         createLink(
           "Navigovat",
           waypoint.links.google_maps,
-          "popup-link popup-link--primary"
+          "popup-link popup-link--primary",
+          true
         )
       );
     }
@@ -329,15 +340,19 @@
   function bindFilters() {
     document.querySelectorAll("[data-route-filter]").forEach(function (button) {
       button.addEventListener("click", function () {
-        state.activeFilter = button.dataset.routeFilter || "all";
+        const routeGroup = button.dataset.routeFilter;
+        const shouldEnable = !state.activeGroups.has(routeGroup);
 
-        document.querySelectorAll("[data-route-filter]").forEach(function (item) {
-          const isActive = item === button;
-          item.classList.toggle("is-active", isActive);
-          item.setAttribute("aria-pressed", String(isActive));
-        });
+        if (shouldEnable) {
+          state.activeGroups.add(routeGroup);
+        } else {
+          state.activeGroups.delete(routeGroup);
+        }
 
-        const visibleWaypoints = waypoints.filter(matchesActiveFilter);
+        button.classList.toggle("is-active", shouldEnable);
+        button.setAttribute("aria-pressed", String(shouldEnable));
+
+        const visibleWaypoints = getVisibleWaypoints();
         clearSelection();
         renderWaypointList(visibleWaypoints);
 
@@ -347,26 +362,63 @@
           });
           state.markers.clear();
           addVisibleMarkers(visibleWaypoints);
-          fitVisibleMarkers();
+
+          const groupWaypoints = getOptionalWaypoints(routeGroup);
+          if (shouldEnable && groupWaypoints.length > 0) {
+            fitWaypoints(groupWaypoints);
+          } else {
+            const visibleOptionalWaypoints = visibleWaypoints.filter(
+              function (waypoint) {
+                return !isFixedWaypoint(waypoint);
+              }
+            );
+            fitWaypoints(
+              visibleOptionalWaypoints.length > 0
+                ? visibleOptionalWaypoints
+                : getFixedWaypoints()
+            );
+          }
         }
       });
     });
   }
 
-  function matchesActiveFilter(waypoint) {
-    if (state.activeFilter === "all") {
-      return true;
-    }
+  function updateFilterCounts() {
+    document.querySelectorAll("[data-filter-count]").forEach(function (element) {
+      const count = getOptionalWaypoints(element.dataset.filterCount).length;
+      const button = element.closest("[data-route-filter]");
+      element.textContent = count;
 
-    if (state.activeFilter === "outbound") {
-      return waypoint.route_group === "outbound" || waypoint.route_group === "both";
-    }
+      if (button) {
+        button.disabled = count === 0;
+        if (count === 0) {
+          button.title = "V této kategorii zatím nejsou žádná místa.";
+        }
+      }
+    });
+  }
 
-    if (state.activeFilter === "return") {
-      return waypoint.route_group === "return" || waypoint.route_group === "both";
-    }
+  function getVisibleWaypoints() {
+    return waypoints.filter(function (waypoint) {
+      return (
+        isFixedWaypoint(waypoint) ||
+        state.activeGroups.has(waypoint.route_group)
+      );
+    });
+  }
 
-    return waypoint.route_group === state.activeFilter;
+  function getFixedWaypoints() {
+    return waypoints.filter(isFixedWaypoint);
+  }
+
+  function getOptionalWaypoints(routeGroup) {
+    return waypoints.filter(function (waypoint) {
+      return waypoint.route_group === routeGroup && !isFixedWaypoint(waypoint);
+    });
+  }
+
+  function isFixedWaypoint(waypoint) {
+    return waypoint.id === "prague-start" || waypoint.id === "xio-apartments-bar";
   }
 
   function fitVisibleMarkers() {
@@ -384,6 +436,26 @@
     }
 
     state.map.fitBounds(L.latLngBounds(markerCoordinates), {
+      padding: [38, 38],
+      maxZoom: 11
+    });
+  }
+
+  function fitWaypoints(points) {
+    const coordinates = points.map(function (waypoint) {
+      return [waypoint.position.lat, waypoint.position.lon];
+    });
+
+    if (coordinates.length === 0) {
+      return;
+    }
+
+    if (coordinates.length === 1) {
+      state.map.setView(coordinates[0], 10);
+      return;
+    }
+
+    state.map.fitBounds(L.latLngBounds(coordinates), {
       padding: [38, 38],
       maxZoom: 11
     });
@@ -447,12 +519,22 @@
     return stat;
   }
 
-  function createLink(label, url, className) {
+  function createLink(label, url, className, openInNewTab) {
     const link = createElement("a", className, label);
     link.href = url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    if (openInNewTab) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
     return link;
+  }
+
+  function getWaypointUrl(waypointId) {
+    const baseUrl = String(tripData.waypointBaseUrl || "/waypoints/").replace(
+      /\/?$/,
+      "/"
+    );
+    return baseUrl + encodeURIComponent(waypointId) + "/";
   }
 
   function createElement(tagName, className, text) {
