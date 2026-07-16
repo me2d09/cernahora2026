@@ -1,0 +1,112 @@
+---
+layout: default
+title: Černá Hora 2026
+description: Mapa kandidátních zastávek rodinné cesty z Prahy do Černé Hory a zpět.
+---
+
+<header class="site-header">
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Černá Hora 2026 – úvod">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 48 48" role="img">
+        <path d="M7 36 19 15l7 12 5-8 10 17H7Z" fill="currentColor"/>
+        <path d="m16 25 3-6 4 7-3-2-2 3-2-2Z" fill="#f4f1e8"/>
+      </svg>
+    </span>
+    <span>
+      <strong>Černá Hora</strong>
+      <small>roadtrip 2026</small>
+    </span>
+  </a>
+  <nav class="site-nav" aria-label="Hlavní navigace">
+    <a class="is-active" href="#map-section" aria-current="page">Mapa</a>
+    <span class="nav-placeholder" aria-label="Další sekce budou doplněny">Další brzy</span>
+  </nav>
+</header>
+
+<main id="main-content">
+  <section class="map-section" id="map-section" aria-labelledby="map-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Praha → Bar → Praha</p>
+        <h1 id="map-title">Místa, která stojí za zastávku</h1>
+        <p class="section-intro">
+          Kandidátní zastávky na cestě tam i zpět. Vyber místo na mapě
+          nebo v seznamu a prohlédni si podrobnosti.
+        </p>
+      </div>
+      <div class="trip-window" aria-label="Termín cesty">
+        <span>Termín cesty</span>
+        <strong>5.–15. srpna</strong>
+      </div>
+    </div>
+
+    <div class="map-filters" aria-label="Filtrování bodů">
+      <button class="filter-button is-active" type="button" data-route-filter="all" aria-pressed="true">
+        Všechna místa
+      </button>
+      <button class="filter-button" type="button" data-route-filter="outbound" aria-pressed="false">
+        Cesta tam
+      </button>
+      <button class="filter-button" type="button" data-route-filter="return" aria-pressed="false">
+        Cesta zpět
+      </button>
+      <button class="filter-button" type="button" data-route-filter="base" aria-pressed="false">
+        Černá Hora
+      </button>
+    </div>
+
+    <div class="map-shell">
+      <div class="map-canvas-wrap">
+        <div
+          id="trip-map"
+          class="trip-map"
+          role="application"
+          aria-label="Interaktivní mapa zastávek na cestě"
+        ></div>
+        <noscript>
+          <p class="map-message">Interaktivní mapa vyžaduje zapnutý JavaScript. Místa jsou dostupná v seznamu vedle mapy.</p>
+        </noscript>
+        <p class="map-message" id="map-error" hidden>
+          Mapu se nepodařilo načíst. Místa můžeš dál procházet v seznamu.
+        </p>
+        <div class="map-legend" aria-hidden="true">
+          <span><i class="legend-dot legend-dot--outbound"></i>Tam</span>
+          <span><i class="legend-dot legend-dot--return"></i>Zpět</span>
+          <span><i class="legend-dot legend-dot--base"></i>Cíl</span>
+        </div>
+      </div>
+
+      <aside class="waypoint-panel" aria-labelledby="waypoint-list-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Přehled</p>
+            <h2 id="waypoint-list-title">Zastávky</h2>
+          </div>
+          <span class="waypoint-count" id="waypoint-count"></span>
+        </div>
+        <div class="waypoint-list" id="waypoint-list"></div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Rodinný plán cesty · léto 2026</p>
+  <a href="#map-section">Zpět na mapu</a>
+</footer>
+
+<script id="map-data" type="application/json">
+{
+  "dataset": {{ site.data.waypoints.dataset | jsonify }},
+  "trip": {{ site.data.waypoints.trip | jsonify }},
+  "mapDefaults": {{ site.data.waypoints.map_defaults | jsonify }},
+  "iconRegistry": {{ site.data.waypoints.icon_registry | jsonify }},
+  "waypoints": {{ site.data.waypoints.waypoints | jsonify }},
+  "mapConfig": {
+    "provider": {{ site.map.provider | default: "openstreetmap" | jsonify }},
+    "mapyApiKey": {{ site.map.mapy_api_key | default: "" | jsonify }},
+    "mapyMapset": {{ site.map.mapy_mapset | default: "outdoor" | jsonify }}
+  }
+}
+</script>
+

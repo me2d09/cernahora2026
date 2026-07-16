@@ -1,0 +1,18 @@
+title: Montenegro Roadtrip 2026
+description: Interactive plan for a family roadtrip from Prague to Montenegro.
+lang: cs-CZ
+url: ""
+baseurl: ""
+
+map:
+  provider: openstreetmap
+  mapy_api_key: ""
+  mapy_mapset: outdoor
+
+exclude:
+  - AGENTS.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+
