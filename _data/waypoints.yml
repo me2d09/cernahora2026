@@ -1,0 +1,2276 @@
+schema_version: '1.0'
+generated_at: '2026-07-16T10:16:41.797343Z'
+locale: cs-CZ
+dataset:
+  id: praha-bar-2026-roadtrip
+  title: 'Praha–Bar 2026: kandidátní zastávky tam i zpět'
+  description: Datový podklad pro statickou mapu v Leafletu nebo OpenLayers. Waypointy jsou kandidáti a alternativy, ne pevně
+    routovaná automobilová trasa.
+  source_gpx: praha_bar_2026_kandidatni_zastavky_v2.gpx
+  coordinates_note: Souřadnice slouží pro mapové zobrazení. U XIO Apartments jsou orientační; pro navigaci použijte přesnou
+    adresu nebo název objektu.
+  ratings_note: Hodnocení 0–5 jsou redakční odhady pro tuto konkrétní rodinu, nikoli objektivní ratingy.
+  dynamic_data_note: Koupání, kvalita vody, otevírací doby, ceny, silnice a místní pravidla se mohou změnit. Před cestou ověřit
+    body označené confidence low nebo medium.
+  photo_policy: Fotografie jsou pouze vzdálené URL. Většina používá Wikimedia Commons Special:FilePath. Při publikaci zobrazte
+    autora/licenci podle source_page; hotlink může být omezen poskytovatelem.
+trip:
+  dates:
+    outbound_earliest: '2026-08-05'
+    checkin_bar: '2026-08-08T15:00:00+02:00'
+    checkout_bar: '2026-08-13'
+    return_latest: '2026-08-15'
+  road_party:
+    adults: 2
+    children:
+    - age: 4
+    - age: 8
+    - age: 11
+    stroller: false
+  stay_party:
+    adults: 5
+    children:
+    - age: 4
+    - age: 8
+    - age: 11
+  destination:
+    waypoint_id: xio-apartments-bar
+    name: XIO Apartments, Bar
+map_defaults:
+  center:
+    lat: 44.2
+    lon: 18.6
+  zoom: 6
+  fit_bounds: true
+  preferred_projection: EPSG:3857
+  cluster_markers: false
+  show_photo_in_popup: true
+  featured_photo_only_on_mobile: true
+rating_scale:
+  min: 0
+  max: 5
+  fields:
+    wow: Vizuální nebo zážitková síla místa.
+    kids: Atraktivita a praktičnost pro děti 4, 8 a 11 let.
+    swimming: Kvalita a jistota koupacího programu.
+    overnight: Vhodnost místa pro nocleh a večerní program.
+    route_fit: Jak dobře bod sedí do plánovaného koridoru.
+icon_registry:
+  start:
+    lucide: navigation
+    mdi: car
+    emoji: 🚗
+    color: '#2563eb'
+  zoo:
+    lucide: paw-print
+    mdi: paw
+    emoji: 🦒
+    color: '#16a34a'
+  architecture:
+    lucide: landmark
+    mdi: bank
+    emoji: 🏛️
+    color: '#a855f7'
+  wetland:
+    lucide: bird
+    mdi: bird
+    emoji: 🦆
+    color: '#0d9488'
+  cave:
+    lucide: mountain
+    mdi: image-filter-hdr
+    emoji: 🪨
+    color: '#78716c'
+  waterfall:
+    lucide: waves
+    mdi: waves-arrow-down
+    emoji: 💦
+    color: '#0891b2'
+  lake:
+    lucide: waves
+    mdi: waves
+    emoji: 🏞️
+    color: '#0284c7'
+  bridge:
+    lucide: route
+    mdi: bridge
+    emoji: 🌉
+    color: '#ea580c'
+  river:
+    lucide: waves
+    mdi: wave
+    emoji: 🏊
+    color: '#06b6d4'
+  beach:
+    lucide: umbrella
+    mdi: beach
+    emoji: 🏖️
+    color: '#f59e0b'
+  lodging:
+    lucide: house
+    mdi: home
+    emoji: 🏠
+    color: '#dc2626'
+  city:
+    lucide: building-2
+    mdi: city
+    emoji: 🏘️
+    color: '#9333ea'
+  museum:
+    lucide: microscope
+    mdi: museum
+    emoji: 🔬
+    color: '#7c3aed'
+  destination:
+    lucide: map-pin-check
+    mdi: map-marker-check
+    emoji: 📍
+    color: '#e11d48'
+route_variants:
+- id: outbound-direct
+  name: Tam – přímý koridor se Zlatiborem
+  direction: outbound
+  waypoint_ids:
+  - prague-start
+  - palic-zoo
+  - palic-promenade
+  - subotica-art-nouveau
+  - stopica-cave
+  - gostilje-waterfall
+  - zlatar-lake
+  - cijevna-niagara
+  - xio-apartments-bar
+  optional_groups:
+  - - palic-zoo
+    - palic-promenade
+    - subotica-art-nouveau
+  - - stopica-cave
+    - gostilje-waterfall
+  comment: Nejlogičtější varianta pro dvě zážitkové noci bez velké odbočky.
+- id: outbound-novi-sad
+  name: Tam – Novi Sad a koupání
+  direction: outbound
+  waypoint_ids:
+  - prague-start
+  - palic-zoo
+  - subotica-art-nouveau
+  - petrovaradin-fortress
+  - strand-novi-sad
+  - borkovac-lake
+  - stopica-cave
+  - zlatar-lake
+  - cijevna-niagara
+  - xio-apartments-bar
+  optional_groups:
+  - - petrovaradin-fortress
+    - strand-novi-sad
+  - - borkovac-lake
+  comment: Silnější program pro děti, ale více zastávek a městského provozu.
+- id: outbound-mountain-wow
+  name: Tam – Tara / horské wow
+  direction: outbound
+  waypoint_ids:
+  - prague-start
+  - palic-zoo
+  - subotica-art-nouveau
+  - tara-bridge
+  - biograd-lake
+  - cijevna-niagara
+  - xio-apartments-bar
+  optional_groups:
+  - - tara-bridge
+    - biograd-lake
+  comment: Největší scenérie, ale výrazně horší route_fit a méně jistého koupání.
+- id: return-herzegovina-jajce
+  name: Zpět – Hercegovina a Plivská jezera
+  direction: return
+  waypoint_ids:
+  - xio-apartments-bar
+  - trebinje-old-town
+  - kocusa-waterfall
+  - kravica-waterfalls
+  - mostar-old-bridge
+  - jajce-waterfall
+  - pliva-lakes-mills
+  - prague-start
+  optional_groups:
+  - - kocusa-waterfall
+    - kravica-waterfalls
+  - - mostar-old-bridge
+  comment: 'Doporučený zpáteční koridor: historie, vodopád s koupáním a noc u jezera.'
+filter_options:
+  route_groups:
+  - outbound
+  - return
+  - base
+  - both
+  statuses:
+  - fixed
+  - selected
+  - candidate
+  - alternative
+  - backup
+  countries:
+  - CZ
+  - RS
+  - ME
+  - BA
+  swimming_values:
+  - false
+  - true
+  - conditional
+  - nearby
+  - wading_only
+  crowd_levels:
+  - low
+  - low_medium
+  - medium
+  - medium_high
+  - high
+  - very_high
+  detour_levels:
+  - none
+  - low
+  - medium
+  - medium_high
+  - high
+  - very_high
+  - low_on_return_corridor
+  - low_on_herzegovina_route
+  - none_on_herzegovina_route
+  - none_on_jajce_route
+  - medium_city_traffic
+waypoints:
+- id: prague-start
+  name: START – Praha
+  short_name: Praha
+  order: 1
+  route_group: both
+  status: fixed
+  position:
+    lat: 50.0755
+    lon: 14.4378
+    precision: waypoint
+  location:
+    country: Česko
+    country_code: CZ
+    region: Praha
+  presentation:
+    category: start
+    icon_id: start
+  summary: Výchozí a návratový bod rodinného roadtripu.
+  highlights:
+  - Start cesty
+  - Referenční bod pro vzdálenosti
+  activities:
+  - odjezd
+  - návrat
+  family:
+    child_fit: 3
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 0
+    - 0
+    best_time: night_or_early_morning
+    crowds_in_august: high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: none
+    parking: not_applicable
+    overnight_score: 1
+    accommodation_style: null
+    road_note: Počátek hlavního koridoru přes Maďarsko a Srbsko.
+  ratings:
+    wow: 3
+    kids: 2
+    swimming: 0
+    overnight: 1
+    route_fit: 5
+  tags:
+  - start
+  - home
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Prague_skyline_at_dawn.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Prague_skyline_at_dawn.jpg
+    caption: Praha za úsvitu – výchozí bod roadtripu
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=50.0755&mlon=14.4378#map=14/50.0755/14.4378
+    google_maps: https://www.google.com/maps/search/?api=1&query=50.0755,14.4378
+  notes: 'Výchozí bod. Hlavní zamýšlený koridor: Praha–Budapešť–Bělehrad–Čačak–Požega–jihozápadní Srbsko–Černá Hora–Bar.'
+- id: palic-zoo
+  name: TAM 1 – Zoo Palić
+  short_name: Zoo Palić
+  order: 2
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 46.0989625
+    lon: 19.7498345
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Vojvodina
+  presentation:
+    category: zoo
+    icon_id: zoo
+  summary: Kompaktní zoo ve starém stinném parku; dobrá na rozchození po noční cestě.
+  highlights:
+  - bílí lvi
+  - velká zvířata
+  - botanický park
+  - stín
+  activities:
+  - zoo
+  - dětské hřiště
+  - krátká procházka
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 180
+    best_time: morning
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: Palićské jezero nebrat automaticky jako koupací.
+  logistics:
+    detour_level: low
+    parking: easy
+    overnight_score: 4
+    accommodation_style: penziony a menší hotely u jezera
+    road_note: Pár minut od dálnice a hranice HU–RS.
+  ratings:
+    wow: 3
+    kids: 5
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - animals
+  - shade
+  - first-stop
+  - family
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Serbia_-_Pali%C4%87_-_zoo.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Serbia_-_Pali%C4%87_-_zoo.JPG
+    caption: Areál zoo v Palići
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Pali%C4%87_Zoo.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Pali%C4%87_Zoo.jpg
+    caption: Zeleň a prostředí Zoo Palić
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=46.0989625&mlon=19.7498345#map=14/46.0989625/19.7498345
+    google_maps: https://www.google.com/maps/search/?api=1&query=46.0989625,19.7498345
+  notes: Příjemná zoo v rozsáhlém stinném parku; vhodná na 2–3 hodiny. Dobrá první zastávka po nočním přejezdu.
+- id: palic-promenade
+  name: 'TAM 1 – Palić: vodárenská věž a promenáda'
+  short_name: Palić – secese
+  order: 3
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 46.10214
+    lon: 19.75846
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Vojvodina
+  presentation:
+    category: architecture
+    icon_id: architecture
+  summary: Krátká procházka lázeňským parkem se secesní vodárenskou věží a dřevěnými stavbami.
+  highlights:
+  - vodárenská věž
+  - Velká terasa
+  - lázeňský park
+  - promenáda
+  activities:
+  - architektura
+  - zmrzlina
+  - večeře
+  - procházka
+  family:
+    child_fit: 3
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 45
+    - 90
+    best_time: late_afternoon
+    crowds_in_august: low_medium
+  swimming:
+    available: false
+    type: lake
+    confidence: medium
+    notes: Koupání neplánovat bez aktuálního potvrzení kvality vody.
+  logistics:
+    detour_level: low
+    parking: moderate
+    overnight_score: 4
+    accommodation_style: apartmány a lázeňské hotely
+    road_note: Lze spojit pěšky se zoo.
+  ratings:
+    wow: 3
+    kids: 2
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - art-nouveau
+  - promenade
+  - easy-walk
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Palics_Water_Tower.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Palics_Water_Tower.jpg
+    caption: Secesní vodárenská věž u vstupu do lázní
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Velika_terasa_na_Pali%C4%87u_-_The_Grand_Terrace_at_Pali%C4%87_03.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Velika_terasa_na_Pali%C4%87u_-_The_Grand_Terrace_at_Pali%C4%87_03.jpg
+    caption: Velká terasa v lázeňském parku
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=46.10214&mlon=19.75846#map=14/46.10214/19.75846
+    google_maps: https://www.google.com/maps/search/?api=1&query=46.10214,19.75846
+  notes: Secesní vodárenská věž, lázeňský park a jezero. Spíš procházka a večeře než koupání.
+- id: subotica-art-nouveau
+  name: 'TAM 1 – Subotica: synagoga a secese'
+  short_name: Subotica
+  order: 4
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 46.10361
+    lon: 19.66778
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Vojvodina
+  presentation:
+    category: architecture
+    icon_id: architecture
+  summary: Nečekaně výrazné město maďarské secese; kulturně nejsilnější bod severního Srbska.
+  highlights:
+  - synagoga
+  - radnice
+  - Raichlův palác
+  - barevné střechy
+  activities:
+  - městská procházka
+  - architektura
+  - kavárna
+  - zmrzlina
+  family:
+    child_fit: 3
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 90
+    - 180
+    best_time: morning_or_evening
+    crowds_in_august: low_medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: low
+    parking: moderate
+    overnight_score: 4
+    accommodation_style: městské hotely a apartmány
+    road_note: Z Paliće asi 15 minut autem.
+  ratings:
+    wow: 4
+    kids: 3
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - history
+  - art-nouveau
+  - city
+  - culture
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Serbia_-_Subotica_-_Synagogue.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Serbia_-_Subotica_-_Synagogue.JPG
+    caption: Synagoga v Subotici
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Inside_the_Subotica_Synagogue.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Inside_the_Subotica_Synagogue.jpg
+    caption: Barevný interiér synagogy
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=46.10361&mlon=19.66778#map=14/46.10361/19.66778
+    google_maps: https://www.google.com/maps/search/?api=1&query=46.10361,19.66778
+  notes: Výrazná maďarská secese, synagoga, radnice a centrum. Silnější kulturní bod než samotný Palić.
+- id: ludas-wetland
+  name: ALT – Ludašské jezero
+  short_name: Ludašské jezero
+  order: 5
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 46.08719
+    lon: 19.8299258
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Vojvodina
+  presentation:
+    category: wetland
+    icon_id: wetland
+  summary: Tichá stepní mokřadní rezervace s rákosím, ptáky a vodními buvoly.
+  highlights:
+  - ptáci
+  - rákosí
+  - vodní buvoli
+  - západ slunce
+  activities:
+  - pozorování ptáků
+  - krátká naučná stezka
+  - fotografování
+  family:
+    child_fit: 3
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 60
+    - 120
+    best_time: sunset
+    crowds_in_august: low
+  swimming:
+    available: false
+    type: wetland
+    confidence: high
+    notes: Nekoupací přírodní rezervace.
+  logistics:
+    detour_level: low
+    parking: limited
+    overnight_score: 2
+    accommodation_style: spíš u Paliće
+    road_note: Klidná alternativa, když nechcete další město.
+  ratings:
+    wow: 2
+    kids: 3
+    swimming: 0
+    overnight: 2
+    route_fit: 4
+  tags:
+  - nature
+  - birds
+  - quiet
+  - sunset
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Special_Nature_Reserve_Ludas_lake_(panoramic_view).JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Special_Nature_Reserve_Ludas_lake_(panoramic_view).JPG
+    caption: Panorama rezervace Ludašského jezera
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Water_Buffalo_and_calf,_Ludas_Lake,_Serbia.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Water_Buffalo_and_calf,_Ludas_Lake,_Serbia.jpg
+    caption: Vodní buvoli v rezervaci
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=46.08719&mlon=19.8299258#map=14/46.08719/19.8299258
+    google_maps: https://www.google.com/maps/search/?api=1&query=46.08719,19.8299258
+  notes: Klidný mokřad a ptačí rezervace u návštěvnického centra. Nekoupací, spíš rákosí, ptáci a západ slunce.
+- id: stopica-cave
+  name: TAM 2 – Stopića pećina
+  short_name: Stopića pećina
+  order: 6
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 43.702222
+    lon: 19.855
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Zlatibor
+  presentation:
+    category: cave
+    icon_id: cave
+  summary: Snadno přístupná jeskyně s obrovským vstupem, sintrovými vanami a podzemním vodopádem.
+  highlights:
+  - velký jeskynní portál
+  - sintrové vany
+  - podzemní vodopád
+  - nasvícené chodníky
+  activities:
+  - jeskyně
+  - krátká prohlídka
+  - fotografování
+  family:
+    child_fit: 5
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 45
+    - 75
+    best_time: opening_time
+    crowds_in_august: high
+  swimming:
+    available: false
+    type: cave_stream
+    confidence: high
+    notes: Prohlídková jeskyně, nikoli koupání.
+  logistics:
+    detour_level: medium
+    parking: moderate
+    overnight_score: 4
+    accommodation_style: chaty a apartmány v oblasti Zlatiboru
+    road_note: Příjezd po lokální silnici; část návštěvy po schodech.
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 0
+    overnight: 4
+    route_fit: 4
+  tags:
+  - cave
+  - waterfall
+  - kids
+  - short-visit
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Stopi%C4%87a_Pe%C4%87ina2.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Stopi%C4%87a_Pe%C4%87ina2.jpg
+    caption: Interiér jeskyně Stopića
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Stopi%C4%87a_pe%C4%87ina_-_vodopad.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Stopi%C4%87a_pe%C4%87ina_-_vodopad.JPG
+    caption: Podzemní vodopád v jeskyni
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.702222&mlon=19.855#map=14/43.702222/19.855
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.702222,19.855
+  notes: Přístupná jeskyně s velkým vstupem, sintrovými vanami a podzemním vodopádem. Návštěva přibližně 45–75 minut; schody.
+- id: gostilje-waterfall
+  name: TAM 2 – Vodopád Gostilje
+  short_name: Gostilje
+  order: 7
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 43.6565164
+    lon: 19.8378669
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Zlatibor
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Upravený areál s přibližně 20m vodopádem a menšími kaskádami.
+  highlights:
+  - hlavní vodopád
+  - kaskády
+  - krátká stezka
+  - zeleň
+  activities:
+  - vodopád
+  - procházka
+  - piknik
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 60
+    - 100
+    best_time: morning_or_late_afternoon
+    crowds_in_august: medium_high
+  swimming:
+    available: false
+    type: waterfall
+    confidence: medium
+    notes: Koupání přímo pod vodopádem neplánovat; místní možnosti se mohou měnit.
+  logistics:
+    detour_level: medium
+    parking: easy
+    overnight_score: 3
+    accommodation_style: penziony v Gostilje nebo Zlatiboru
+    road_note: Dobře se kombinuje se Stopićovou jeskyní.
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 1
+    overnight: 3
+    route_fit: 4
+  tags:
+  - waterfall
+  - easy-walk
+  - nature
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Gostilje_Waterfalls.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Gostilje_Waterfalls.JPG
+    caption: Vodopád Gostilje
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Vodopad_Gostilje_Zlatibor1.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Vodopad_Gostilje_Zlatibor1.jpg
+    caption: Kaskády v areálu Gostilje
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.6565164&mlon=19.8378669#map=14/43.6565164/19.8378669
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.6565164,19.8378669
+  notes: Fotogenický 20m vodopád a kaskády, upravený areál. Koupání přímo pod vodopádem neplánovat; informace o místním bazénu
+    se rozcházejí.
+- id: zlatar-lake
+  name: TAM 2 – Zlatarsko jezero / Kokin Brod
+  short_name: Zlatarské jezero
+  order: 8
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 43.4754789
+    lon: 19.9019289
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Nova Varoš
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: 'Nejlogičtější kandidát na druhou noc: horská nádrž, chatky, výhledy a vodní aktivity.'
+  highlights:
+  - jezero
+  - chatky u vody
+  - kajaky a loďky
+  - horské okolí
+  activities:
+  - odpočinek
+  - kajak
+  - loďka
+  - večer u vody
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 720
+    best_time: late_afternoon_and_morning
+    crowds_in_august: low_medium
+  swimming:
+    available: conditional
+    type: reservoir
+    confidence: low_medium
+    notes: Aktuální pravidla a kvalitu vody ověřit u konkrétního ubytování před rezervací.
+  logistics:
+    detour_level: low
+    parking: easy
+    overnight_score: 5
+    accommodation_style: chatky, apartmány a malé penziony u vody
+    road_note: Téměř přímo na hlavním koridoru směrem k Černé Hoře.
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 3
+    overnight: 5
+    route_fit: 5
+  tags:
+  - lake
+  - overnight
+  - kayak
+  - quiet
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Uvac_nova_varos_IMG_9980_kokin_brod_Zlatarso_Jezero.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Uvac_nova_varos_IMG_9980_kokin_brod_Zlatarso_Jezero.JPG
+    caption: Zlatarské jezero u Kokin Brodu
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Uvac_nova_varos_IMG_9995_kokin_brod_Zlatarso_Jezero.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Uvac_nova_varos_IMG_9995_kokin_brod_Zlatarso_Jezero.JPG
+    caption: Pohled přes Zlatarské jezero
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.4754789&mlon=19.9019289#map=14/43.4754789/19.9019289
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.4754789,19.9019289
+  notes: Jezero s chatkami a vodními aktivitami; možné koupací úseky u Kokin Brodu. Zdroje se rozcházejí v aktuálních pravidlech
+    koupání, ověřit před cestou na místě.
+- id: sopotnica-waterfalls
+  name: ALT – Vodopády Sopotnica
+  short_name: Sopotnica
+  order: 9
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 43.285763
+    lon: 19.830579
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Prijepolje
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Méně turistické kaskády, staré mlýnky a autentická horská krajina.
+  highlights:
+  - soustava kaskád
+  - staré mlýnky
+  - málo turistů
+  - lokální atmosféra
+  activities:
+  - vodopády
+  - krátká procházka
+  - fotografování
+  family:
+    child_fit: 3
+    grandparent_fit: 2
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 90
+    - 150
+    best_time: daylight
+    crowds_in_august: low
+  swimming:
+    available: wading_only
+    type: cold_mountain_stream
+    confidence: medium
+    notes: Voda je velmi studená; spíš smočení než rodinné koupání.
+  logistics:
+    detour_level: medium_high
+    parking: limited
+    overnight_score: 3
+    accommodation_style: venkovské ubytování
+    road_note: Závěr po užší lokální cestě.
+  ratings:
+    wow: 4
+    kids: 3
+    swimming: 1
+    overnight: 3
+    route_fit: 3
+  tags:
+  - waterfall
+  - off-the-beaten-path
+  - mills
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4_%D0%A1%D0%BE%D0%BF%D0%BE%D1%82%D0%BD%D0%B8%D1%86%D0%B0_%D0%BD%D0%B0_%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B8_%D0%88%D0%B0%D0%B4%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4_%D0%A1%D0%BE%D0%BF%D0%BE%D1%82%D0%BD%D0%B8%D1%86%D0%B0_%D0%BD%D0%B0_%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B8_%D0%88%D0%B0%D0%B4%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA.jpg
+    caption: Vodopád Sopotnica v pohoří Jadovnik
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Sopotnica_Zlatar,_Serbia.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Sopotnica_Zlatar,_Serbia.jpg
+    caption: Staré mlýnky u kaskád Sopotnice
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.285763&mlon=19.830579#map=14/43.285763/19.830579
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.285763,19.830579
+  notes: Soustava kaskád a mlýnků u Prijepolje. Krásné a méně turistické, ale přístup znamená větší odbočku a lokální silnici;
+    voda je velmi studená.
+- id: tara-bridge
+  name: ALT – Most Đurđevića Tara
+  short_name: Most přes Taru
+  order: 10
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 43.15025
+    lon: 19.290475
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Žabljak
+  presentation:
+    category: bridge
+    icon_id: bridge
+  summary: 'Největší vizuální wow na severu Černé Hory: obří most vysoko nad kaňonem Tary.'
+  highlights:
+  - kaňon Tary
+  - monumentální most
+  - zipline
+  - vyhlídky bez túry
+  activities:
+  - vyhlídka
+  - zipline
+  - krátká procházka
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 60
+    - 150
+    best_time: early_morning
+    crowds_in_august: high
+  swimming:
+    available: false
+    type: canyon_river
+    confidence: high
+    notes: Na tomto bodě se nekoupe.
+  logistics:
+    detour_level: high
+    parking: moderate
+    overnight_score: 4
+    accommodation_style: chaty a apartmány u Žabljaku
+    road_note: Výrazná odchylka od přímého koridoru přes Kolašin.
+  ratings:
+    wow: 5
+    kids: 5
+    swimming: 0
+    overnight: 4
+    route_fit: 3
+  tags:
+  - canyon
+  - bridge
+  - zipline
+  - wow
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Montenegro_%C4%90ur%C4%91evi%C4%87a_Tara_Bridge_05.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Montenegro_%C4%90ur%C4%91evi%C4%87a_Tara_Bridge_05.jpg
+    caption: Most Đurđevića Tara nad kaňonem
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Bridge_over_the_Tara_river,_near_%C5%BDabljak,_Montenegro_07.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Bridge_over_the_Tara_river,_near_%C5%BDabljak,_Montenegro_07.jpg
+    caption: Pohled do kaňonu Tary z mostu
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.15025&mlon=19.290475#map=14/43.15025/19.290475
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.15025,19.290475
+  notes: Monumentální most 170 m nad kaňonem Tary, vyhlídky a zipline. Bez koupání, ale největší vizuální wow; výraznější
+    odklon od přímé trasy přes Kolašin.
+- id: biograd-lake
+  name: ALT – Biogradsko jezero
+  short_name: Biogradské jezero
+  order: 11
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 42.900603
+    lon: 19.595388
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Kolašin
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: Klidné horské jezero obklopené pralesem; logisticky výborné, ale spíš jemné než dramatické wow.
+  highlights:
+  - prales
+  - horská hladina
+  - snadný okruh
+  - loďky
+  activities:
+  - procházka
+  - loďka
+  - piknik
+  family:
+    child_fit: 3
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 60
+    - 180
+    best_time: early_morning
+    crowds_in_august: medium_high
+  swimming:
+    available: conditional
+    type: cold_mountain_lake
+    confidence: medium
+    notes: Voda je studená a místo ekologicky citlivé; koupání není hlavní důvod návštěvy.
+  logistics:
+    detour_level: low
+    parking: paid_or_controlled
+    overnight_score: 4
+    accommodation_style: Kolašin – hotely, apartmány, horské chaty
+    road_note: Velmi dobře navazuje na dálnici směrem k Podgorici.
+  ratings:
+    wow: 3
+    kids: 3
+    swimming: 2
+    overnight: 4
+    route_fit: 5
+  tags:
+  - forest
+  - lake
+  - easy-walk
+  - national-park
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Biogradsko_Jezero.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Biogradsko_Jezero.jpg
+    caption: Biogradské jezero v národním parku
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Biogradsko_jezero_in_July.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Biogradsko_jezero_in_July.jpg
+    caption: Letní pohled na Biogradské jezero
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.900603&mlon=19.595388#map=14/42.900603/19.595388
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.900603,19.595388
+  notes: Prales, klidné horské jezero a snadný okruh asi 3,5 km. Koupání je zmiňováno, ale voda je studená a ekologicky citlivá;
+    spíš procházka a loďka než hlavní koupací zastávka.
+- id: piva-lake
+  name: ALT – Pivské jezero / Plužine
+  short_name: Pivské jezero
+  order: 12
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 43.1541366
+    lon: 18.8410376
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Plužine
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: Dramatická tyrkysová nádrž v hlubokých horách, vhodná na loďku a koupací zastávky.
+  highlights:
+  - tyrkysová voda
+  - kaňon
+  - plavba lodí
+  - jeskyně
+  activities:
+  - loďka
+  - koupání
+  - kajak
+  - vyhlídky
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 180
+    - 720
+    best_time: morning
+    crowds_in_august: low_medium
+  swimming:
+    available: true
+    type: mountain_reservoir
+    confidence: high
+    notes: Nejlépe při organizované krátké plavbě nebo na pláži u Plužine.
+  logistics:
+    detour_level: very_high
+    parking: easy
+    overnight_score: 5
+    accommodation_style: apartmány a chaty s výhledem na jezero
+    road_note: Skvělá atrakce, ale prakticky jiná trasa než přímý přejezd.
+  ratings:
+    wow: 5
+    kids: 5
+    swimming: 5
+    overnight: 5
+    route_fit: 2
+  tags:
+  - lake
+  - boat
+  - swimming
+  - big-detour
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Plu%C5%BEine_Piva_Lake.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Plu%C5%BEine_Piva_Lake.JPG
+    caption: Pivské jezero u Plužine
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Pluzine.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Pluzine.jpg
+    caption: Pláž a jezero v Plužine
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.1541366&mlon=18.8410376#map=14/43.1541366/18.8410376
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.1541366,18.8410376
+  notes: Dramatické tyrkysové jezero; krátké plavby z Plužine s koupací zastávkou. Velké wow a dobré ubytování, ale leží výrazně
+    západně od přímého koridoru.
+- id: krupac-lake
+  name: ALT – Jezero Krupac u Nikšiće
+  short_name: Jezero Krupac
+  order: 13
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 42.7975135
+    lon: 18.8999905
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Nikšić
+  presentation:
+    category: beach
+    icon_id: beach
+  summary: Jednoduché lokální koupaliště u Nikšiće s pláží; méně wow, ale praktické pro děti.
+  highlights:
+  - pláž
+  - čistá voda
+  - piknik
+  - místní atmosféra
+  activities:
+  - koupání
+  - piknik
+  - dětská pauza
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 90
+    - 240
+    best_time: afternoon
+    crowds_in_august: medium
+  swimming:
+    available: true
+    type: reservoir_beach
+    confidence: high
+    notes: Normální koupací zastávka, nikoli vodopád.
+  logistics:
+    detour_level: high
+    parking: easy
+    overnight_score: 3
+    accommodation_style: spíše v Nikšići
+    road_note: Dává smysl jen při variantě přes Nikšić.
+  ratings:
+    wow: 3
+    kids: 5
+    swimming: 5
+    overnight: 3
+    route_fit: 2
+  tags:
+  - beach
+  - swimming
+  - local
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Krupac_Lake_(Nik%C5%A1i%C4%87,_Montenegro)_01.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Krupac_Lake_(Nik%C5%A1i%C4%87,_Montenegro)_01.jpg
+    caption: Jezero Krupac u Nikšiće
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Beach_on_the_Krupac_Lake_in_Nik%C5%A1i%C4%87,_Montenegro_01.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Beach_on_the_Krupac_Lake_in_Nik%C5%A1i%C4%87,_Montenegro_01.jpg
+    caption: Pláž u jezera Krupac
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.7975135&mlon=18.8999905#map=14/42.7975135/18.8999905
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.7975135,18.8999905
+  notes: Oblíbené vnitrozemské koupaliště s pláží a čistou vodou. Praktické s dětmi, méně monumentální než Piva; odbočka směrem
+    k Nikšići.
+- id: slap-na-zeti
+  name: ALT – Slap na Zeti
+  short_name: Slap na Zeti
+  order: 14
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 42.60004
+    lon: 19.065177
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Danilovgrad
+  presentation:
+    category: river
+    icon_id: river
+  summary: Klidné říční místo s restaurací a ubytováním; příjemnější než monumentální.
+  highlights:
+  - řeka Zeta
+  - jídlo u vody
+  - stín
+  - bungalovy
+  activities:
+  - odpočinek
+  - jídlo
+  - ochlazení
+  - případně kánoe
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 90
+    - 720
+    best_time: late_afternoon
+    crowds_in_august: low_medium
+  swimming:
+    available: conditional
+    type: river
+    confidence: medium
+    notes: Možnost koupání ověřit přímo u provozovatele a podle průtoku.
+  logistics:
+    detour_level: medium
+    parking: easy
+    overnight_score: 4
+    accommodation_style: bungalovy u řeky
+    road_note: Dobré jako klidný nocleh před pobřežím.
+  ratings:
+    wow: 3
+    kids: 4
+    swimming: 3
+    overnight: 4
+    route_fit: 3
+  tags:
+  - river
+  - lodging
+  - quiet
+  photos: []
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.60004&mlon=19.065177#map=14/42.60004/19.065177
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.60004,19.065177
+  notes: Říční areál a ubytování u Zety, vhodné na klid, jídlo a ochlazení. Spíš lokální příjemná zastávka než velká přírodní
+    pecka.
+- id: cijevna-niagara
+  name: PŘED CÍLEM – Cijevna / Niagara
+  short_name: Cijevna / Niagara
+  order: 15
+  route_group: outbound
+  status: candidate
+  position:
+    lat: 42.383591
+    lon: 19.279215
+    precision: waypoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Podgorica
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: 'Krátká odbočka před Barem: skalnatá řeka a koupací tůně; hlavní vodopád může být v srpnu suchý.'
+  highlights:
+  - skalnatý kaňon
+  - říční tůně
+  - restaurace
+  - krátká odbočka
+  activities:
+  - koupání
+  - oběd
+  - fotografování
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 60
+    - 150
+    best_time: before_checkin
+    crowds_in_august: medium
+  swimming:
+    available: conditional
+    type: rocky_river_pools
+    confidence: medium_high
+    notes: Koupání v řece je pravděpodobnější než tekoucí vodopád v srpnu.
+  logistics:
+    detour_level: low
+    parking: moderate
+    overnight_score: 1
+    accommodation_style: null
+    road_note: Výborné využití času před check-inem od 15:00.
+  ratings:
+    wow: 3
+    kids: 4
+    swimming: 4
+    overnight: 1
+    route_fit: 5
+  tags:
+  - river
+  - swimming
+  - before-checkin
+  - seasonal-waterfall
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Cijevna_(Cem)_river_in_Montenegro_07.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Cijevna_(Cem)_river_in_Montenegro_07.jpg
+    caption: Kaskády a skalnaté koupání na řece Cijevna
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.383591&mlon=19.279215#map=14/42.383591/19.279215
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.383591,19.279215
+  notes: Krátká odbočka u Podgorice. V srpnu může být vodopád bez vody, ale ve skalnaté řece se obvykle dá koupat; vhodné
+    před check-inem v Baru.
+- id: xio-apartments-bar
+  name: CÍL – XIO Apartments, Bar (orientační bod)
+  short_name: XIO Apartments
+  order: 16
+  route_group: base
+  status: selected
+  position:
+    lat: 42.1084
+    lon: 19.0883
+    precision: approximate
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar / Šušanj
+  presentation:
+    category: destination
+    icon_id: destination
+  summary: Vybraná základna u Baru poblíž pláže Šušanj; souřadnice jsou orientační podle adresy.
+  highlights:
+  - ubytování
+  - pobřeží Šušanj
+  - výchozí bod výletů
+  - Bar
+  activities:
+  - pobyt u moře
+  - pláž
+  - výlety
+  family:
+    child_fit: 5
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 7200
+    - 7200
+    best_time: checkin_after_15
+    crowds_in_august: medium_high
+  swimming:
+    available: true
+    type: adriatic_pebble_beach
+    confidence: high
+    notes: Hlavní pláže v okolí jsou oblázkové; boty do vody se hodí.
+  logistics:
+    detour_level: none
+    parking: verify_with_property
+    overnight_score: 5
+    accommodation_style: rezervované apartmány
+    road_note: Finální navigaci vést podle přesné adresy nebo názvu objektu.
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 4
+    overnight: 5
+    route_fit: 5
+  tags:
+  - selected
+  - base
+  - sea
+  - lodging
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/2025-05-11_Sunset_over_the_Adriatic_Sea_seen_from_%C5%A0u%C5%A1anj_Beach,_Bar_1.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:2025-05-11_Sunset_over_the_Adriatic_Sea_seen_from_%C5%A0u%C5%A1anj_Beach,_Bar_1.jpg
+    caption: Západ slunce z pláže Šušanj u Baru
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/%C5%A0u%C5%A1anj,_2014-04-21_-_panoramio_(1).jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:%C5%A0u%C5%A1anj,_2014-04-21_-_panoramio_(1).jpg
+    caption: Pobřeží Šušanj v Baru
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.1084&mlon=19.0883#map=14/42.1084/19.0883
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.1084,19.0883
+  notes: XIO Apartments, IV Crnogorske proletarske brigade 46, Bar. Souřadnice jsou orientační podle adresy a polohy u pláže
+    Šušanj; v navigaci použijte název nebo přesnou adresu.
+- id: trebinje-old-town
+  name: ZPĚT 1 – Trebinje, staré město
+  short_name: Trebinje
+  order: 17
+  route_group: return
+  status: candidate
+  position:
+    lat: 42.71194
+    lon: 18.34611
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Hercegovina
+  presentation:
+    category: city
+    icon_id: city
+  summary: Pohodové kamenné město u řeky, vhodné jako první noc zpáteční cesty.
+  highlights:
+  - staré město
+  - řeka Trebišnjica
+  - platany
+  - osmanský most
+  activities:
+  - procházka
+  - večeře
+  - historie
+  - kavárny
+  family:
+    child_fit: 4
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 180
+    - 720
+    best_time: evening
+    crowds_in_august: low_medium
+  swimming:
+    available: nearby
+    type: river_pool
+    confidence: medium
+    notes: Koupání je doplňková možnost, ne hlavní důvod návštěvy.
+  logistics:
+    detour_level: low_on_return_corridor
+    parking: moderate
+    overnight_score: 5
+    accommodation_style: apartmány a malé hotely v centru
+    road_note: Příjemnější a klidnější noc než Mostar.
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 2
+    overnight: 5
+    route_fit: 5
+  tags:
+  - old-town
+  - river
+  - overnight
+  - food
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Stari_grad,_Trebinje.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Stari_grad,_Trebinje.jpg
+    caption: Staré město Trebinje u řeky
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Trebinje_River.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Trebinje_River.jpg
+    caption: Trebinje a řeka Trebišnjica
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.71194&mlon=18.34611#map=14/42.71194/18.34611
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.71194,18.34611
+  notes: Pohodové historické město, řeka, platany, most a restaurace. Velmi dobré na první noc zpáteční cesty.
+- id: kocusa-waterfall
+  name: ZPĚT ALT – Koćuša
+  short_name: Koćuša
+  order: 18
+  route_group: return
+  status: alternative
+  position:
+    lat: 43.24934
+    lon: 17.45222
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Ljubuški
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Široká nízká kaskáda se starými mlýnky; klidnější a lokálnější než Kravica.
+  highlights:
+  - široká kaskáda
+  - mlýnky
+  - restaurace
+  - méně turistů
+  activities:
+  - koupání
+  - oběd
+  - odpočinek
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 240
+    best_time: morning_or_evening
+    crowds_in_august: medium
+  swimming:
+    available: true
+    type: waterfall_pool
+    confidence: medium_high
+    notes: Koupací podmínky závisí na průtoku a místních pravidlech.
+  logistics:
+    detour_level: low_on_herzegovina_route
+    parking: easy
+    overnight_score: 3
+    accommodation_style: okolí Ljubuški
+    road_note: Dobře se kombinuje s cestou přes Mostar.
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 5
+    overnight: 3
+    route_fit: 4
+  tags:
+  - waterfall
+  - swimming
+  - mills
+  - less-crowded
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Kocusa.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Kocusa.jpg
+    caption: Široký vodopád Koćuša
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.24934&mlon=17.45222#map=14/43.24934/17.45222
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.24934,17.45222
+  notes: Široká nízká kaskáda, mlýnky, restaurace a klidnější prostředí. Dobré na relax a vodu, méně turistické než Kravica.
+- id: kravica-waterfalls
+  name: ZPĚT ALT – Kravica
+  short_name: Kravica
+  order: 19
+  route_group: return
+  status: alternative
+  position:
+    lat: 43.158
+    lon: 17.589
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Ljubuški
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Největší koupací vodopád na trase zpět; velmi efektní, ale v srpnu silně turistický.
+  highlights:
+  - velká půlkruhová kaskáda
+  - koupání
+  - loďky
+  - restaurace
+  activities:
+  - koupání
+  - vodopád
+  - fotografování
+  family:
+    child_fit: 5
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 150
+    - 300
+    best_time: opening_time
+    crowds_in_august: very_high
+  swimming:
+    available: true
+    type: waterfall_pool
+    confidence: high
+    notes: Koupání může být omezené podle průtoku a bezpečnostních pokynů.
+  logistics:
+    detour_level: low_on_herzegovina_route
+    parking: paid
+    overnight_score: 3
+    accommodation_style: Ljubuški, Međugorje nebo Mostar
+    road_note: Přijet co nejdřív ráno kvůli davům a horku.
+  ratings:
+    wow: 5
+    kids: 5
+    swimming: 5
+    overnight: 3
+    route_fit: 4
+  tags:
+  - waterfall
+  - swimming
+  - crowded
+  - wow
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Kravica_Waterfalls,Bosnia_%26_Herzegovina.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Kravica_Waterfalls,Bosnia_%26_Herzegovina.jpg
+    caption: Panorama vodopádů Kravica
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Waterfalls_Kravica_3,_Bosnia_and_Herzegovina.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Waterfalls_Kravica_3,_Bosnia_and_Herzegovina.jpg
+    caption: Kaskády Kravica zblízka
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.158&mlon=17.589#map=14/43.158/17.589
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.158,17.589
+  notes: Velká půlkruhová kaskáda a letní koupání. Největší wow typu Krka, ale v srpnu bývá hodně návštěvníků.
+- id: mostar-old-bridge
+  name: ZPĚT ALT – Mostar, Starý most
+  short_name: Mostar
+  order: 20
+  route_group: return
+  status: alternative
+  position:
+    lat: 43.3373
+    lon: 17.815
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Hercegovina
+  presentation:
+    category: architecture
+    icon_id: architecture
+  summary: Ikonický Starý most a osmanské centrum; krásné, ale v srpnu nejvíc turistické město zpátečního koridoru.
+  highlights:
+  - Starý most
+  - Neretva
+  - osmanské centrum
+  - večerní atmosféra
+  activities:
+  - historie
+  - městská procházka
+  - večeře
+  family:
+    child_fit: 3
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 360
+    best_time: early_morning_or_evening
+    crowds_in_august: very_high
+  swimming:
+    available: false
+    type: river
+    confidence: high
+    notes: Městský historický bod, ne rodinné koupání.
+  logistics:
+    detour_level: none_on_herzegovina_route
+    parking: difficult_or_paid
+    overnight_score: 4
+    accommodation_style: apartmány mimo nejužší centrum
+    road_note: Dlážděné a kluzké ulice, v poledne velké horko.
+  ratings:
+    wow: 5
+    kids: 3
+    swimming: 0
+    overnight: 4
+    route_fit: 4
+  tags:
+  - unesco
+  - bridge
+  - history
+  - crowded
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Mostar_Old_Bridge.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Mostar_Old_Bridge.jpg
+    caption: Starý most v Mostaru za soumraku
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/View_over_Mostar_from_Old_Bridge_Museum_-_Mostar_-_Bosnia_and_Herzegovina.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:View_over_Mostar_from_Old_Bridge_Museum_-_Mostar_-_Bosnia_and_Herzegovina.jpg
+    caption: Pohled na Mostar od muzea Starého mostu
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=43.3373&mlon=17.815#map=14/43.3373/17.815
+    google_maps: https://www.google.com/maps/search/?api=1&query=43.3373,17.815
+  notes: Ikonický historický most a staré město. V srpnu turistické; hodí se jako krátká zastávka, pokud pojedete hercegovinským
+    koridorem.
+- id: jajce-waterfall
+  name: ZPĚT 2 – Jajce, Plivský vodopád
+  short_name: Jajce
+  order: 21
+  route_group: return
+  status: candidate
+  position:
+    lat: 44.337401
+    lon: 17.270072
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Střední Bosna
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Velký vodopád přímo pod historickým městem a pevností; unikátní snadno dostupné spojení přírody a historie.
+  highlights:
+  - Plivský vodopád
+  - pevnost
+  - hradby
+  - historické centrum
+  activities:
+  - vodopád
+  - historie
+  - vyhlídka
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 240
+    best_time: morning_or_evening
+    crowds_in_august: medium_high
+  swimming:
+    available: false
+    type: urban_waterfall
+    confidence: high
+    notes: Pod hlavním vodopádem se nekoupe.
+  logistics:
+    detour_level: none_on_jajce_route
+    parking: moderate
+    overnight_score: 4
+    accommodation_style: město nebo lépe Plivská jezera
+    road_note: Silnější na krátkou návštěvu než na samotný nocleh.
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - waterfall
+  - fortress
+  - history
+  - wow
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Bosnia_and_Herzegovina_-_Pliva_Waterfall,_Jajce.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Bosnia_and_Herzegovina_-_Pliva_Waterfall,_Jajce.jpg
+    caption: Plivský vodopád pod městem Jajce
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Jajce_%E2%80%93_Pliva_waterfall.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Jajce_%E2%80%93_Pliva_waterfall.jpg
+    caption: Plivský vodopád a historické město
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=44.337401&mlon=17.270072#map=14/44.337401/17.270072
+    google_maps: https://www.google.com/maps/search/?api=1&query=44.337401,17.270072
+  notes: Vodopád přímo pod historickým městem a pevností. Nekoupací bod, ale mimořádně efektní a snadno dostupný.
+- id: pliva-lakes-mills
+  name: ZPĚT 2 – Plivské mlýnky a jezera
+  short_name: Plivská jezera
+  order: 22
+  route_group: return
+  status: candidate
+  position:
+    lat: 44.3476167
+    lon: 17.2263167
+    precision: waypoint
+  location:
+    country: Bosna a Hercegovina
+    country_code: BA
+    region: Jajce
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: 'Nejlepší druhá noc zpět: ikonické dřevěné mlýnky, jezera, loďky, piknik a koupání.'
+  highlights:
+  - dřevěné mlýnky
+  - Velké Plivské jezero
+  - loďky
+  - koupání
+  activities:
+  - koupání
+  - šlapadlo
+  - kajak
+  - piknik
+  - mlýnky
+  family:
+    child_fit: 5
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 180
+    - 720
+    best_time: late_afternoon_and_morning
+    crowds_in_august: medium
+  swimming:
+    available: true
+    type: lake
+    confidence: high
+    notes: Vybírat oficiální koupací úsek; neplést s vodopádem v centru Jajce.
+  logistics:
+    detour_level: none_on_jajce_route
+    parking: easy
+    overnight_score: 5
+    accommodation_style: chaty a apartmány přímo u jezera
+    road_note: Ráno lze pokračovat na sever přes Banja Luku.
+  ratings:
+    wow: 5
+    kids: 5
+    swimming: 5
+    overnight: 5
+    route_fit: 5
+  tags:
+  - lake
+  - mills
+  - swimming
+  - overnight
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Jajce_%E2%80%93_Pliva_mills_1.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Jajce_%E2%80%93_Pliva_mills_1.jpg
+    caption: Dřevěné mlýnky mezi Plivskými jezery
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Watermills_Pliva_Jajce_Bosnia.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Watermills_Pliva_Jajce_Bosnia.JPG
+    caption: Historické vodní mlýnky na Plivě
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=44.3476167&mlon=17.2263167#map=14/44.3476167/17.2263167
+    google_maps: https://www.google.com/maps/search/?api=1&query=44.3476167,17.2263167
+  notes: Dřevěné mlýnky mezi jezery, loďky, piknik a možnosti koupání. Nejlepší oblast na druhou noc zpáteční cesty.
+- id: petrovaradin-fortress
+  name: TAM ALT – Petrovaradínská pevnost
+  short_name: Petrovaradín
+  order: 23
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 45.2527
+    lon: 19.862
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Novi Sad
+  presentation:
+    category: bridge
+    icon_id: bridge
+  summary: Rozsáhlá pevnost nad Dunajem s výhledem na Novi Sad a možností podzemních chodeb.
+  highlights:
+  - pevnost
+  - výhled na Dunaj
+  - hodinová věž
+  - podzemní systém
+  activities:
+  - historie
+  - vyhlídka
+  - případně tunely
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 75
+    - 150
+    best_time: morning_or_evening
+    crowds_in_august: medium_high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: Koupání je zvlášť na Štrandu.
+  logistics:
+    detour_level: low
+    parking: moderate
+    overnight_score: 3
+    accommodation_style: Novi Sad nebo okolí Frušky Gory
+    road_note: Dobře se kombinuje se Štrandem během jednoho půldne.
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 0
+    overnight: 3
+    route_fit: 4
+  tags:
+  - fortress
+  - danube
+  - view
+  - history
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Varadin_bridge_and_Novi_Sad_from_Petrovaradin_Fortress.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Varadin_bridge_and_Novi_Sad_from_Petrovaradin_Fortress.jpg
+    caption: Výhled z Petrovaradínské pevnosti na Novi Sad
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Petrovaradin_Fortress_(P%C3%A9terv%C3%A1radi_v%C3%A1r,_Peterwardein).JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Petrovaradin_Fortress_(P%C3%A9terv%C3%A1radi_v%C3%A1r,_Peterwardein).JPG
+    caption: Petrovaradínská pevnost
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=45.2527&mlon=19.862#map=14/45.2527/19.862
+    google_maps: https://www.google.com/maps/search/?api=1&query=45.2527,19.862
+  notes: Velká pevnost nad Dunajem s výhledem na Novi Sad. Dobrá krátká zastávka pro děti i dospělé; podzemní chodby jen podle
+    času a otevírací doby.
+- id: strand-novi-sad
+  name: TAM ALT – Pláž Štrand, Novi Sad
+  short_name: Štrand
+  order: 24
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 45.2387
+    lon: 19.8537
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Novi Sad
+  presentation:
+    category: beach
+    icon_id: beach
+  summary: Velká písečná městská pláž na Dunaji s hřišti a občerstvením.
+  highlights:
+  - písek
+  - Dunaj
+  - hřiště
+  - městské zázemí
+  activities:
+  - koupání
+  - pláž
+  - jídlo
+  - dětská pauza
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 240
+    best_time: morning
+    crowds_in_august: high
+  swimming:
+    available: conditional
+    type: river_beach
+    confidence: medium
+    notes: Před vstupem do vody respektovat aktuální značení kvality vody a pokyny plavčíků.
+  logistics:
+    detour_level: low
+    parking: moderate
+    overnight_score: 3
+    accommodation_style: Novi Sad nebo Borkovac
+    road_note: Městský provoz, ale dobré spojení s Petrovaradínem.
+  ratings:
+    wow: 3
+    kids: 5
+    swimming: 4
+    overnight: 3
+    route_fit: 4
+  tags:
+  - sand
+  - river
+  - swimming
+  - urban-beach
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Beach_in_Novi_Sad_-_%C5%A0trand_04.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Beach_in_Novi_Sad_-_%C5%A0trand_04.jpg
+    caption: Písečná pláž Štrand na Dunaji
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Novi_Sad,_%C5%A0trand,_pohled_na_Most_Slobode.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Novi_Sad,_%C5%A0trand,_pohled_na_Most_Slobode.jpg
+    caption: Štrand s výhledem na Most svobody
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=45.2387&mlon=19.8537#map=14/45.2387/19.8537
+    google_maps: https://www.google.com/maps/search/?api=1&query=45.2387,19.8537
+  notes: Městská písečná pláž na Dunaji s hřišti a občerstvením. Vhodná na 2–3 hodiny; před koupáním sledovat aktuální značení
+    kvality vody a pokyny plavčíků.
+- id: borkovac-lake
+  name: TAM ALT – Borkovacké jezero
+  short_name: Borkovac
+  order: 25
+  route_group: outbound
+  status: alternative
+  position:
+    lat: 45.0046
+    lon: 19.7907
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Ruma / Fruška Gora
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: Nenápadné jezero mezi Novým Sadem a Bělehradem, vhodné na klidnější noc a koupací pauzu.
+  highlights:
+  - jezero
+  - zeleň
+  - pláž
+  - klidnější nocleh
+  activities:
+  - koupání
+  - piknik
+  - procházka
+  - nocleh
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 720
+    best_time: late_afternoon
+    crowds_in_august: low_medium
+  swimming:
+    available: conditional
+    type: reservoir
+    confidence: medium
+    notes: Před cestou ověřit aktuální kvalitu vody a stav pláže.
+  logistics:
+    detour_level: low
+    parking: easy
+    overnight_score: 4
+    accommodation_style: chaty, apartmány a ubytování u Rumy
+    road_note: Logisticky dobré mezi Novi Sadem a Bělehradem.
+  ratings:
+    wow: 3
+    kids: 4
+    swimming: 4
+    overnight: 4
+    route_fit: 4
+  tags:
+  - lake
+  - overnight
+  - quiet
+  - swimming
+  photos: []
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=45.0046&mlon=19.7907#map=14/45.0046/19.7907
+    google_maps: https://www.google.com/maps/search/?api=1&query=45.0046,19.7907
+  notes: Klidnější jezero u Rumy s pláží, zelení a možnostmi ubytování poblíž vody. Dobrá nenápadná noclehárna mezi Novým
+    Sadem a Bělehradem; aktuální kvalitu vody ověřit na místě.
+- id: belgrade-science-museum
+  name: TAM ZÁLOHA – Muzeum vědy a techniky, Bělehrad
+  short_name: Muzeum vědy
+  order: 26
+  route_group: outbound
+  status: backup
+  position:
+    lat: 44.821
+    lon: 20.4679
+    precision: waypoint
+  location:
+    country: Srbsko
+    country_code: RS
+    region: Bělehrad
+  presentation:
+    category: museum
+    icon_id: museum
+  summary: Vnitřní záložní program do deště nebo extrémního vedra; technické exponáty, roboty a exoskelety.
+  highlights:
+  - průmyslový robot UMS
+  - historické počítače
+  - exoskelety
+  - technická herna
+  activities:
+  - muzeum
+  - technika
+  - interaktivní program
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 90
+    - 180
+    best_time: bad_weather
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: medium_city_traffic
+    parking: difficult_or_paid
+    overnight_score: 3
+    accommodation_style: Bělehrad
+    road_note: Pouze při dešti/vedru; centrum znamená parkování a kolony.
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 0
+    overnight: 3
+    route_fit: 2
+  tags:
+  - museum
+  - science
+  - robots
+  - rain-backup
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Belgrade_Museum_of_Science_and_Technology_front_2009.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Belgrade_Museum_of_Science_and_Technology_front_2009.jpg
+    caption: Budova Muzea vědy a techniky v Bělehradě
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Prvi_industrijski_robot_UMS.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Prvi_industrijski_robot_UMS.jpg
+    caption: První průmyslový robot UMS ve sbírce muzea
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Aktivni_egzoskelet_02,_1974._godina.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Aktivni_egzoskelet_02,_1974._godina.jpg
+    caption: Aktivní exoskelet z roku 1974
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=44.821&mlon=20.4679#map=14/44.821/20.4679
+    google_maps: https://www.google.com/maps/search/?api=1&query=44.821,20.4679
+  notes: Vnitřní program do vedra nebo deště, vhodný hlavně pro děti 8 a 11 let. Počítat s městským provozem a parkováním
+    v centru Bělehradu.
