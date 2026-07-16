@@ -85,7 +85,8 @@ The popup uses existing fields when available:
 - route group and selection status;
 - short name and summary;
 - `wow`, `kids`, and recommended visit duration;
-- external map and navigation links.
+- an action for adding the waypoint to the route planner;
+- an external OpenStreetMap link.
 - an internal link to the complete waypoint page.
 
 Missing optional fields are handled gracefully. Coordinates are validated in the browser before a waypoint is displayed.
@@ -102,17 +103,20 @@ This keeps `_data/waypoints.yml` as the only content source. Adding, removing, o
 /cernahora2026/waypoints/stopica-cave/
 ```
 
-## Future routing
+## Routing
 
-Mapy.com routing can be added without replacing Leaflet. The intended integration is:
+The route planner accepts two waypoint selections:
 
-1. select a route variant or ordered waypoint set;
-2. call `GET https://api.mapy.com/v1/routing/route`;
-3. request `format=geojson`;
-4. pass the returned `geometry` feature to `L.geoJSON`;
-5. display returned distance, duration, and segment details separately from the marker layer.
+1. open a waypoint card and select **Přidat do trasy**;
+2. repeat for the destination;
+3. optionally swap or remove either point;
+4. select **Spočítat trasu**.
 
-The routing API accepts up to 15 intermediate waypoints per request. Provider-specific calls should remain isolated in a small adapter rather than being mixed into marker rendering.
+The Mapy.com adapter in `assets/js/routing.js` calls the car-fast routing endpoint and requests GeoJSON. `assets/js/map.js` renders the returned feature through Leaflet, fits the viewport to the route, and displays its distance and estimated driving time.
+
+Changing or removing a selected point clears the previous result and aborts any in-progress request. The planner currently accepts exactly two points. Mapy.com supports up to 15 intermediate waypoints, so ordered multi-stop routing can be added later without replacing the provider adapter.
+
+Mapy.com routing attribution and the provider logo remain visible while a calculated route is displayed, including when the selected base map is OpenStreetMap.
 
 ## Project structure
 
@@ -133,7 +137,8 @@ The routing API accepts up to 15 intermediate waypoints per request. Provider-sp
 │   ├── css/
 │   │   └── main.css
 │   └── js/
-│       └── map.js
+│       ├── map.js
+│       └── routing.js
 ├── AGENTS.md
 ├── Gemfile
 ├── README.md

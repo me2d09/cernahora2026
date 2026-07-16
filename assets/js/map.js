@@ -6,6 +6,11 @@
   const listElement = document.getElementById("waypoint-list");
   const countElement = document.getElementById("waypoint-count");
   const errorElement = document.getElementById("map-error");
+  const routePointsElement = document.getElementById("route-points");
+  const routeStatusElement = document.getElementById("route-status");
+  const routeCalculateButton = document.getElementById("route-calculate");
+  const routeSwapButton = document.getElementById("route-swap");
+  const routeClearButton = document.getElementById("route-clear");
 
   if (!dataElement || !mapElement || !listElement) {
     return;
@@ -25,6 +30,11 @@
         .filter(isValidWaypoint)
         .sort((first, second) => (first.order || 0) - (second.order || 0))
     : [];
+  const waypointsById = new Map(
+    waypoints.map(function (waypoint) {
+      return [waypoint.id, waypoint];
+    })
+  );
 
   const state = {
     activeGroups: new Set(),
@@ -33,12 +43,24 @@
     map: null,
     mapyLogoControl: null,
     markers: new Map(),
+    route: {
+      abortController: null,
+      attributionAdded: false,
+      error: null,
+      layer: null,
+      loading: false,
+      result: null,
+      selectedIds: []
+    },
+    routingProvider: null,
     selectedId: null
   };
 
   renderWaypointList(getVisibleWaypoints());
   updateFilterCounts();
   bindFilters();
+  bindRoutePlanner();
+  renderRoutePlanner();
 
   if (typeof window.L === "undefined") {
     showMapError();
@@ -64,9 +86,10 @@
 
     L.control.zoom({ position: "topright" }).addTo(state.map);
     state.baseLayers = createBaseLayers();
+    state.routingProvider = createRoutingProvider();
     bindProviderSwitch();
     setMapProvider(getInitialProvider());
-    addVisibleMarkers(waypoints);
+    addVisibleMarkers(getVisibleWaypoints());
     fitVisibleMarkers();
 
     state.map.on("click", clearSelection);
@@ -76,6 +99,16 @@
     state.map.on("blur", function () {
       state.map.scrollWheelZoom.disable();
     });
+  }
+
+  function createRoutingProvider() {
+    const apiKey = tripData.mapConfig && tripData.mapConfig.mapyApiKey;
+
+    if (!apiKey || typeof window.MapyRoutingProvider === "undefined") {
+      return null;
+    }
+
+    return new window.MapyRoutingProvider(apiKey);
   }
 
   function createBaseLayers() {
@@ -160,15 +193,20 @@
   }
 
   function updateMapyLogo() {
-    if (state.activeProvider === "mapy") {
+    const shouldShowLogo =
+      state.activeProvider === "mapy" || Boolean(state.route.layer);
+
+    if (shouldShowLogo) {
       if (!state.mapyLogoControl) {
         state.mapyLogoControl = createMapyLogoControl();
       }
-      state.map.addControl(state.mapyLogoControl);
+      if (!state.mapyLogoControl._map) {
+        state.map.addControl(state.mapyLogoControl);
+      }
       return;
     }
 
-    if (state.mapyLogoControl) {
+    if (state.mapyLogoControl && state.mapyLogoControl._map) {
       state.map.removeControl(state.mapyLogoControl);
     }
   }
@@ -224,12 +262,21 @@
 
   function createMarkerIcon(waypoint) {
     const iconDefinition = getIconDefinition(waypoint);
+    const routePosition = state.route.selectedIds.indexOf(waypoint.id);
+    const markerContent =
+      routePosition >= 0
+        ? '<strong class="trip-marker-route-label">' +
+          (routePosition === 0 ? "A" : "B") +
+          "</strong>"
+        : '<span aria-hidden="true">' +
+          escapeHtml(iconDefinition.emoji || "•") +
+          "</span>";
     const markerHtml =
       '<div class="trip-marker" style="--marker-color:' +
       sanitizeColor(iconDefinition.color) +
-      '"><span aria-hidden="true">' +
-      escapeHtml(iconDefinition.emoji || "•") +
-      "</span></div>";
+      '">' +
+      markerContent +
+      "</div>";
 
     return L.divIcon({
       className: "",
@@ -302,6 +349,24 @@
     body.appendChild(stats);
 
     const actions = createElement("div", "popup-actions");
+    const routeIndex = state.route.selectedIds.indexOf(waypoint.id);
+    const addToRouteButton = createElement(
+      "button",
+      "popup-link popup-link--primary",
+      routeIndex >= 0
+        ? "V trase jako " + (routeIndex === 0 ? "A" : "B")
+        : state.route.selectedIds.length >= 2
+          ? "Trasa už má dva body"
+          : "Přidat do trasy"
+    );
+    addToRouteButton.type = "button";
+    addToRouteButton.disabled =
+      routeIndex >= 0 || state.route.selectedIds.length >= 2;
+    addToRouteButton.addEventListener("click", function () {
+      addWaypointToRoute(waypoint.id);
+      state.map.closePopup();
+    });
+    actions.appendChild(addToRouteButton);
     actions.appendChild(
       createLink(
         "Všechny detaily",
@@ -316,16 +381,6 @@
           "Otevřít mapu",
           waypoint.links.openstreetmap,
           "popup-link",
-          true
-        )
-      );
-    }
-    if (waypoint.links && waypoint.links.google_maps) {
-      actions.appendChild(
-        createLink(
-          "Navigovat",
-          waypoint.links.google_maps,
-          "popup-link popup-link--primary",
           true
         )
       );
@@ -461,10 +516,342 @@
     });
   }
 
+  function bindRoutePlanner() {
+    if (
+      !routePointsElement ||
+      !routeCalculateButton ||
+      !routeSwapButton ||
+      !routeClearButton
+    ) {
+      return;
+    }
+
+    routeCalculateButton.addEventListener("click", calculateRoute);
+    routeSwapButton.addEventListener("click", swapRoutePoints);
+    routeClearButton.addEventListener("click", clearRoute);
+  }
+
+  function addWaypointToRoute(waypointId) {
+    if (
+      state.route.selectedIds.includes(waypointId) ||
+      state.route.selectedIds.length >= 2
+    ) {
+      return;
+    }
+
+    clearRouteResult();
+    state.route.selectedIds.push(waypointId);
+    state.route.error = null;
+    renderRoutePlanner();
+    syncRoutePresentation();
+  }
+
+  function removeWaypointFromRoute(waypointId) {
+    clearRouteResult();
+    state.route.selectedIds = state.route.selectedIds.filter(function (id) {
+      return id !== waypointId;
+    });
+    state.route.error = null;
+    renderRoutePlanner();
+    syncRoutePresentation();
+  }
+
+  function swapRoutePoints() {
+    if (state.route.selectedIds.length !== 2) {
+      return;
+    }
+
+    clearRouteResult();
+    state.route.selectedIds.reverse();
+    state.route.error = null;
+    renderRoutePlanner();
+    syncRoutePresentation();
+  }
+
+  function clearRoute() {
+    clearRouteResult();
+    state.route.selectedIds = [];
+    state.route.error = null;
+    renderRoutePlanner();
+    syncRoutePresentation();
+  }
+
+  async function calculateRoute() {
+    if (
+      state.route.selectedIds.length !== 2 ||
+      !state.routingProvider ||
+      state.route.loading
+    ) {
+      if (!state.routingProvider) {
+        state.route.error = "Routing přes Mapy.com není nakonfigurovaný.";
+        renderRoutePlanner();
+      }
+      return;
+    }
+
+    clearRouteResult();
+    const start = waypointsById.get(state.route.selectedIds[0]);
+    const end = waypointsById.get(state.route.selectedIds[1]);
+
+    if (!start || !end) {
+      state.route.error = "Vybrané body už nejsou dostupné.";
+      renderRoutePlanner();
+      return;
+    }
+
+    state.route.abortController = new AbortController();
+    state.route.loading = true;
+    state.route.error = null;
+    renderRoutePlanner();
+
+    try {
+      const result = await state.routingProvider.calculate(start, end, {
+        signal: state.route.abortController.signal
+      });
+
+      state.route.result = result;
+      state.route.layer = L.geoJSON(result.geometry, {
+        style: {
+          color: "#d95f2b",
+          opacity: 0.92,
+          weight: 6
+        }
+      }).addTo(state.map);
+
+      addRoutingAttribution();
+      updateMapyLogo();
+      state.map.fitBounds(state.route.layer.getBounds(), {
+        padding: [45, 45],
+        maxZoom: 12
+      });
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        state.route.error = translateRoutingError(error);
+      }
+    } finally {
+      state.route.loading = false;
+      state.route.abortController = null;
+      renderRoutePlanner();
+    }
+  }
+
+  function clearRouteResult() {
+    if (state.route.abortController) {
+      state.route.abortController.abort();
+      state.route.abortController = null;
+    }
+
+    if (state.route.layer && state.map) {
+      state.map.removeLayer(state.route.layer);
+      state.route.layer = null;
+    }
+
+    removeRoutingAttribution();
+    state.route.loading = false;
+    state.route.result = null;
+    updateMapyLogo();
+  }
+
+  function addRoutingAttribution() {
+    if (!state.map || state.route.attributionAdded) {
+      return;
+    }
+
+    state.map.attributionControl.addAttribution(
+      '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>'
+    );
+    state.route.attributionAdded = true;
+  }
+
+  function removeRoutingAttribution() {
+    if (!state.map || !state.route.attributionAdded) {
+      return;
+    }
+
+    state.map.attributionControl.removeAttribution(
+      '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>'
+    );
+    state.route.attributionAdded = false;
+  }
+
+  function renderRoutePlanner() {
+    if (
+      !routePointsElement ||
+      !routeStatusElement ||
+      !routeCalculateButton ||
+      !routeSwapButton ||
+      !routeClearButton
+    ) {
+      return;
+    }
+
+    routePointsElement.replaceChildren();
+    ["A", "B"].forEach(function (label, index) {
+      const waypointId = state.route.selectedIds[index];
+      const waypoint = waypointId && waypointsById.get(waypointId);
+      const slot = createElement(
+        "div",
+        "route-point" + (waypoint ? " is-filled" : "")
+      );
+      slot.appendChild(createElement("span", "route-point-label", label));
+
+      const copy = createElement("span", "route-point-copy");
+      copy.appendChild(
+        createElement(
+          "strong",
+          "",
+          waypoint
+            ? waypoint.short_name || waypoint.name
+            : index === 0
+              ? "Vyber začátek"
+              : "Vyber cíl"
+        )
+      );
+      copy.appendChild(
+        createElement(
+          "span",
+          "",
+          waypoint && waypoint.location
+            ? waypoint.location.country
+            : "Přes kartu bodu na mapě"
+        )
+      );
+      slot.appendChild(copy);
+
+      if (waypoint) {
+        const removeButton = createElement(
+          "button",
+          "route-point-remove",
+          "×"
+        );
+        removeButton.type = "button";
+        removeButton.setAttribute(
+          "aria-label",
+          "Odebrat " + (waypoint.short_name || waypoint.name) + " z trasy"
+        );
+        removeButton.addEventListener("click", function () {
+          removeWaypointFromRoute(waypoint.id);
+        });
+        slot.appendChild(removeButton);
+      }
+
+      routePointsElement.appendChild(slot);
+    });
+
+    const hasTwoPoints = state.route.selectedIds.length === 2;
+    routeCalculateButton.disabled =
+      !hasTwoPoints || state.route.loading || !state.routingProvider;
+    routeCalculateButton.textContent = state.route.loading
+      ? "Počítám…"
+      : "Spočítat trasu";
+    routeSwapButton.disabled = !hasTwoPoints || state.route.loading;
+    routeClearButton.disabled =
+      state.route.selectedIds.length === 0 && !state.route.layer;
+
+    routeStatusElement.classList.toggle(
+      "is-error",
+      Boolean(state.route.error)
+    );
+    routeStatusElement.classList.toggle(
+      "is-result",
+      Boolean(state.route.result)
+    );
+
+    if (state.route.loading) {
+      routeStatusElement.textContent = "Mapy.com hledají nejrychlejší trasu autem…";
+    } else if (state.route.error) {
+      routeStatusElement.textContent = state.route.error;
+    } else if (state.route.result) {
+      routeStatusElement.textContent =
+        formatRouteDistance(state.route.result.length) +
+        " · přibližně " +
+        formatRouteDuration(state.route.result.duration) +
+        " autem";
+    } else if (hasTwoPoints) {
+      routeStatusElement.textContent =
+        "Body jsou připravené. Teď můžeš spočítat trasu.";
+    } else {
+      routeStatusElement.textContent = "Přidej dva body z jejich karty na mapě.";
+    }
+  }
+
+  function syncRoutePresentation() {
+    const visibleWaypoints = getVisibleWaypoints();
+    const visibleIds = new Set(
+      visibleWaypoints.map(function (waypoint) {
+        return waypoint.id;
+      })
+    );
+
+    renderWaypointList(visibleWaypoints);
+
+    state.markers.forEach(function (marker, waypointId) {
+      if (!visibleIds.has(waypointId)) {
+        marker.remove();
+        state.markers.delete(waypointId);
+      }
+    });
+
+    visibleWaypoints.forEach(function (waypoint) {
+      if (!state.markers.has(waypoint.id)) {
+        addVisibleMarkers([waypoint]);
+      }
+    });
+
+    state.markers.forEach(function (marker, waypointId) {
+      const waypoint = waypointsById.get(waypointId);
+      if (!waypoint) {
+        return;
+      }
+
+      marker.setIcon(createMarkerIcon(waypoint));
+      marker.setPopupContent(createPopup(waypoint));
+    });
+  }
+
+  function translateRoutingError(error) {
+    const messages = {
+      "Mapy.com API key is not configured.":
+        "Routing přes Mapy.com není nakonfigurovaný.",
+      "Routing is not available for the configured Mapy.com API key.":
+        "API klíč nemá povolené routování přes Mapy.com.",
+      "A drivable route between these points could not be found.":
+        "Mezi vybranými body se nepodařilo najít trasu autem.",
+      "The selected points cannot be used for route planning.":
+        "Vybrané body nelze použít pro plánování trasy.",
+      "Mapy.com returned an incomplete route.":
+        "Mapy.com vrátily neúplnou trasu."
+    };
+
+    return messages[error.message] || "Trasu se nepodařilo spočítat. Zkus to znovu.";
+  }
+
+  function formatRouteDistance(meters) {
+    const kilometers = Number(meters) / 1000;
+    return new Intl.NumberFormat("cs-CZ", {
+      maximumFractionDigits: kilometers < 100 ? 1 : 0
+    }).format(kilometers) + " km";
+  }
+
+  function formatRouteDuration(seconds) {
+    const totalMinutes = Math.max(1, Math.round(Number(seconds) / 60));
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    if (hours === 0) {
+      return minutes + " min";
+    }
+
+    return minutes === 0
+      ? hours + " h"
+      : hours + " h " + minutes + " min";
+  }
+
   function getVisibleWaypoints() {
     return waypoints.filter(function (waypoint) {
       return (
         isFixedWaypoint(waypoint) ||
+        state.route.selectedIds.includes(waypoint.id) ||
         state.activeGroups.has(waypoint.route_group)
       );
     });
