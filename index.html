@@ -120,6 +120,10 @@ map_page: true
             Mapy.com
           </button>
         </div>
+        <div class="direct-route-legend" id="direct-route-legend" aria-label="Přímé trasy do Černé Hory">
+          <strong>Přímé trasy do XIO</strong>
+          <div id="direct-route-legend-items"></div>
+        </div>
         <div class="map-legend" aria-hidden="true">
           <span><i class="legend-dot legend-dot--outbound"></i>Tam</span>
           <span><i class="legend-dot legend-dot--return"></i>Zpět</span>
@@ -153,6 +157,7 @@ map_page: true
   "mapDefaults": {{ site.data.waypoints.map_defaults | jsonify }},
   "iconRegistry": {{ site.data.waypoints.icon_registry | jsonify }},
   "waypoints": {{ site.data.waypoints.waypoints | jsonify }},
+  "directRoutes": {{ site.data.routes.direct_routes | default: empty | jsonify }},
   "waypointBaseUrl": {{ '/waypoints/' | relative_url | jsonify }},
   "mapConfig": {
     "provider": {{ site.map.provider | default: "openstreetmap" | jsonify }},

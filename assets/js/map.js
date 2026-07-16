@@ -11,6 +11,12 @@
   const routeCalculateButton = document.getElementById("route-calculate");
   const routeSwapButton = document.getElementById("route-swap");
   const routeClearButton = document.getElementById("route-clear");
+  const directRouteLegendElement = document.getElementById(
+    "direct-route-legend"
+  );
+  const directRouteLegendItemsElement = document.getElementById(
+    "direct-route-legend-items"
+  );
 
   if (!dataElement || !mapElement || !listElement) {
     return;
@@ -35,12 +41,19 @@
       return [waypoint.id, waypoint];
     })
   );
+  const directRoutes = Array.isArray(tripData.directRoutes)
+    ? tripData.directRoutes
+    : [];
   const MAX_ROUTE_POINTS = 5;
 
   const state = {
     activeGroups: new Set(),
     activeProvider: null,
     baseLayers: {},
+    directRoutes: {
+      layers: [],
+      loadedCount: 0
+    },
     map: null,
     mapyLogoControl: null,
     markers: new Map(),
@@ -88,10 +101,12 @@
     L.control.zoom({ position: "topright" }).addTo(state.map);
     state.baseLayers = createBaseLayers();
     state.routingProvider = createRoutingProvider();
+    createRoutePanes();
     bindProviderSwitch();
     setMapProvider(getInitialProvider());
     addVisibleMarkers(getVisibleWaypoints());
     fitVisibleMarkers();
+    loadDirectRoutes();
 
     state.map.on("click", clearSelection);
     state.map.on("focus", function () {
@@ -100,6 +115,16 @@
     state.map.on("blur", function () {
       state.map.scrollWheelZoom.disable();
     });
+  }
+
+  function createRoutePanes() {
+    const directRoutesPane = state.map.createPane("directRoutesPane");
+    directRoutesPane.style.zIndex = "350";
+    directRoutesPane.style.pointerEvents = "none";
+
+    const plannedRoutePane = state.map.createPane("plannedRoutePane");
+    plannedRoutePane.style.zIndex = "410";
+    plannedRoutePane.style.pointerEvents = "none";
   }
 
   function createRoutingProvider() {
