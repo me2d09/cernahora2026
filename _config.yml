@@ -1,8 +1,8 @@
 title: Montenegro Roadtrip 2026
 description: Interactive plan for a family roadtrip from Prague to Montenegro.
 lang: cs-CZ
-url: ""
-baseurl: ""
+url: "https://me2d09.github.io"
+baseurl: "/cernahora2026"
 
 map:
   provider: openstreetmap
@@ -15,4 +15,3 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
-
