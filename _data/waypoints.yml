@@ -126,6 +126,46 @@ icon_registry:
     mdi: map-marker-check
     emoji: 📍
     color: '#e11d48'
+  historic_ruins:
+    lucide: castle
+    mdi: castle
+    emoji: 🏰
+    color: '#b45309'
+  tree:
+    lucide: tree-pine
+    mdi: tree
+    emoji: 🫒
+    color: '#4d7c0f'
+  boat:
+    lucide: ship-wheel
+    mdi: ferry
+    emoji: 🛶
+    color: '#0284c7'
+  village:
+    lucide: houses
+    mdi: home-group
+    emoji: 🏡
+    color: '#a16207'
+  viewpoint:
+    lucide: binoculars
+    mdi: binoculars
+    emoji: 🔭
+    color: '#0f766e'
+  royal_city:
+    lucide: crown
+    mdi: crown
+    emoji: 👑
+    color: '#7e22ce'
+  mountain:
+    lucide: mountain-snow
+    mdi: image-filter-hdr
+    emoji: ⛰️
+    color: '#475569'
+  monastery:
+    lucide: church
+    mdi: church
+    emoji: ⛪
+    color: '#92400e'
 route_variants:
 - id: outbound-direct
   name: Tam – přímý koridor se Zlatiborem
@@ -2274,3 +2314,1654 @@ waypoints:
     google_maps: https://www.google.com/maps/search/?api=1&query=44.821,20.4679
   notes: Vnitřní program do vedra nebo deště, vhodný hlavně pro děti 8 a 11 let. Počítat s městským provozem a parkováním
     v centru Bělehradu.
+- id: base-stari-bar
+  name: Stari Bar
+  short_name: Stari Bar
+  order: 100
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.09213
+    lon: 19.13301
+    precision: attraction
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar
+  presentation:
+    category: historic_ruins
+    icon_id: historic_ruins
+  summary: Rozsáhlé ruiny opevněného města pod Rumijí; nejsilnější historický cíl přímo u Baru.
+  highlights:
+  - hradby a brány
+  - akvadukt
+  - kostely a turecké stavby
+  - výhledy na pohoří Rumija
+  activities:
+  - historie
+  - procházka ruinami
+  - fotografování
+  - oběd ve starém podhradí
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered: &id001
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 120
+    - 210
+    best_time: morning_or_late_afternoon
+    crowds_in_august: medium_high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: Lze spojit s koupáním v Baru nebo Utjeze.
+  logistics:
+    detour_level: none
+    parking: medium
+    overnight_score: 3
+    accommodation_style: restaurace a menší hotely v podhradí
+    road_note: Krátký výjezd z Baru; poslední část městskou zástavbou.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 12
+    - 20
+    distance_km_approx: 7
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_day
+    combine_with:
+    - base-old-olive-tree
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 3
+    route_fit: 5
+  tags:
+  - history
+  - ruins
+  - must-see
+  - local
+  - architecture
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Ruins%20Stari%20Bar%20Montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Ruins%20Stari%20Bar%20Montenegro.jpg
+    caption: Ruiny opevněného Starého Baru
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Ruins%20in%20the%20old%20city%20Stari%20Bar.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Ruins%20in%20the%20old%20city%20Stari%20Bar.jpg
+    caption: Historické stavby uvnitř Starého Baru
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.09213&mlon=19.13301#map=14/42.09213/19.13301
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.09213,19.13301
+    info: https://bar.travel/listing/stari-bar/
+  notes: V srpnu jít brzy nebo později odpoledne; uvnitř je málo stínu a nerovný povrch.
+- id: base-old-olive-tree
+  name: Stará oliva Mirovica
+  short_name: Stará oliva
+  order: 101
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.0805
+    lon: 19.1277
+    precision: attraction
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar
+  presentation:
+    category: tree
+    icon_id: tree
+  summary: Monumentální více než dva tisíce let stará oliva; krátká, snadná zastávka poblíž Starého Baru.
+  highlights:
+  - obří zkroucený kmen
+  - živá historická památka
+  - olivová tradice Baru
+  activities:
+  - krátká návštěva
+  - fotografování
+  - ochutnávka olivových produktů
+  family:
+    child_fit: 3
+    grandparent_fit: 5
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 25
+    - 50
+    best_time: any_daylight
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: none
+    parking: easy
+    overnight_score: 1
+    accommodation_style: null
+    road_note: Leží mezi novým a Starým Barem.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 10
+    - 18
+    distance_km_approx: 6
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: short_stop
+    combine_with:
+    - base-stari-bar
+  ratings:
+    wow: 3
+    kids: 3
+    swimming: 0
+    overnight: 1
+    route_fit: 5
+  tags:
+  - nature
+  - tree
+  - heritage
+  - local
+  - short-stop
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Old%20olive%20tree.%20Bar%2C%20Montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Old%20olive%20tree.%20Bar%2C%20Montenegro.jpg
+    caption: Stará oliva v Mirovici
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Old%20olive%20tree%20in%20Bar%2C%20Montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Old%20olive%20tree%20in%20Bar%2C%20Montenegro.jpg
+    caption: Více než dva tisíce let stará oliva
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.0805&mlon=19.1277#map=14/42.0805/19.1277
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.0805,19.1277
+    info: https://bar.travel/listing/stara-maslina/
+    official: https://www.kucamaslina.me/en/old-olive-tree-mirovica/
+  notes: Samostatně kvůli ní den neplánovat; ideální dvojice se Starým Barem.
+- id: base-king-nikola-palace
+  name: Palác krále Nikoly a muzeum Baru
+  short_name: Palác krále Nikoly
+  order: 102
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.100658
+    lon: 19.091083
+    precision: attraction
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar
+  presentation:
+    category: museum
+    icon_id: museum
+  summary: Bývalé královské letní sídlo na pobřežní promenádě, dnes regionální muzeum.
+  highlights:
+  - královské interiéry
+  - historie Baru
+  - park a pobřežní promenáda
+  - archeologické a etnografické sbírky
+  activities:
+  - muzeum
+  - park
+  - promenáda
+  - večerní procházka
+  family:
+    child_fit: 3
+    grandparent_fit: 5
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 60
+    - 100
+    best_time: late_afternoon_or_hot_midday
+    crowds_in_august: medium
+  swimming:
+    available: nearby
+    type: sea_pebble_beach
+    confidence: high
+    notes: Městské koupání a Šušanj jsou poblíž.
+  logistics:
+    detour_level: none
+    parking: medium
+    overnight_score: 1
+    accommodation_style: null
+    road_note: Přímo v Baru; lze dojít pěšky z XIO podle konkrétní trasy.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 5
+    - 12
+    distance_km_approx: 3
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: short_stop
+    combine_with:
+    - base-stari-bar
+  ratings:
+    wow: 3
+    kids: 3
+    swimming: 2
+    overnight: 1
+    route_fit: 5
+  tags:
+  - museum
+  - royal
+  - history
+  - rainy-day
+  - local
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/King%20Nikola%27s%20Palace.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:King%20Nikola%27s%20Palace.jpg
+    caption: Palác krále Nikoly v Baru
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.100658&mlon=19.091083#map=14/42.100658/19.091083
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.100658,19.091083
+    info: https://lovinmontenegro.com/attractions/bar-municipality/bar/king-nikolas-palace-bar/
+  notes: Dobrý muzejní program bez přejezdu; ověřit aktuální otevírací dobu.
+- id: base-virpazar-skadar-boat
+  name: Virpazar a plavba po Skadarském jezeře
+  short_name: Virpazar + loď
+  order: 103
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.2467
+    lon: 19.0915
+    precision: town_center
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar / Skadarské jezero
+  presentation:
+    category: boat
+    icon_id: boat
+  summary: Nejjednodušší výchozí bod na krátkou rodinnou plavbu mezi lekníny, rákosím a jezerními pevnostmi.
+  highlights:
+  - plavba tradiční lodí
+  - lekníny a ptáci
+  - pevnost Besac
+  - jezerní ryby a víno Crmnica
+  activities:
+  - loď
+  - pozorování ptáků
+  - krátké koupání podle trasy
+  - oběd
+  family:
+    child_fit: 5
+    grandparent_fit: 5
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 180
+    - 360
+    best_time: morning
+    crowds_in_august: high
+  swimming:
+    available: conditional
+    type: freshwater_lake_from_boat
+    confidence: medium
+    notes: Záleží na zvolené plavbě a stavu vody; domluvit před vyplutím.
+  logistics:
+    detour_level: low
+    parking: difficult_in_peak
+    overnight_score: 4
+    accommodation_style: penziony, vinařství a apartmány
+    road_note: Rychlý dojezd tunelem Sozina; v srpnu přijet před návalem.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 30
+    - 42
+    distance_km_approx: 27
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-godinje
+  ratings:
+    wow: 5
+    kids: 5
+    swimming: 3
+    overnight: 4
+    route_fit: 5
+  tags:
+  - lake
+  - boat
+  - nature
+  - family
+  - must-see
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Skadar%20Lake%2C%20Montenegro%2003.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Skadar%20Lake%2C%20Montenegro%2003.jpg
+    caption: Skadarské jezero u Virpazaru
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/LakeSkutari%20at%20Virpazar%20%28WPWTR16%29.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:LakeSkutari%20at%20Virpazar%20%28WPWTR16%29.JPG
+    caption: Letecký pohled na jezero u Virpazaru
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.2467&mlon=19.0915#map=14/42.2467/19.0915
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.2467,19.0915
+    info: https://nparkovi.me/parkovi/skadarsko-jezero
+  notes: Na místě je mnoho prodejců plaveb; dopředu porovnat délku, stín na lodi, záchranné vesty a možnost koupání.
+- id: base-godinje
+  name: Historická vesnice Godinje
+  short_name: Godinje
+  order: 104
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.21807
+    lon: 19.10842
+    precision: village
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Crmnica
+  presentation:
+    category: village
+    icon_id: village
+  summary: Kamenná vinařská vesnice s průchody, sklepy a výhledy na Skadarské jezero.
+  highlights:
+  - staré kamenné domy
+  - vinařské sklepy
+  - výhledy
+  - autentická Crmnica
+  activities:
+  - krátká procházka
+  - ochutnávka
+  - fotografování
+  - oběd u místních
+  family:
+    child_fit: 3
+    grandparent_fit: 3
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 60
+    - 130
+    best_time: late_morning_or_evening
+    crowds_in_august: low_medium
+  swimming:
+    available: nearby
+    type: lake
+    confidence: medium
+    notes: Koupání raději řešit v Murići nebo při plavbě.
+  logistics:
+    detour_level: low
+    parking: limited
+    overnight_score: 4
+    accommodation_style: vinařské farmy a venkovské apartmány
+    road_note: Úzké vesnické ulice; zaparkovat před historickým jádrem.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 38
+    - 52
+    distance_km_approx: 31
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: short_stop
+    combine_with:
+    - base-virpazar-skadar-boat
+  ratings:
+    wow: 4
+    kids: 3
+    swimming: 1
+    overnight: 4
+    route_fit: 4
+  tags:
+  - village
+  - wine
+  - architecture
+  - quiet
+  - local
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Godinje%2C%20Montenegro%20-%20view%20of%20the%20village.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Godinje%2C%20Montenegro%20-%20view%20of%20the%20village.jpg
+    caption: Kamenná vesnice Godinje
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Godinje%2C%20Montenegro%20-%20old%20village%204.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Godinje%2C%20Montenegro%20-%20old%20village%204.jpg
+    caption: Historické jádro Godinje
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.21807&mlon=19.10842#map=14/42.21807/19.10842
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.21807,19.10842
+    info: https://bar.travel/listing/godinje/
+  notes: Pro děti spíš doplněk k lodi než samostatný celodenní cíl.
+- id: base-murici-beach
+  name: Murići, pláž na Skadarském jezeře
+  short_name: Murići
+  order: 105
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.1513
+    lon: 19.2168
+    precision: beach
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Skadarska Krajina
+  presentation:
+    category: lake
+    icon_id: lake
+  summary: Klidná oblázková sladkovodní pláž pod Rumijí s výrazně jinou atmosférou než Jadran.
+  highlights:
+  - teplá jezerní voda
+  - výhled na ostrovy a hory
+  - méně lidí
+  - rybí restaurace
+  activities:
+  - koupání
+  - piknik
+  - kajak nebo loď podle nabídky
+  - oběd
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 180
+    - 360
+    best_time: late_morning_to_afternoon
+    crowds_in_august: low_medium
+  swimming:
+    available: true
+    type: freshwater_pebble_beach
+    confidence: medium
+    notes: Před cestou ověřit aktuální kvalitu vody a místní podmínky.
+  logistics:
+    detour_level: medium
+    parking: limited
+    overnight_score: 3
+    accommodation_style: jednoduché apartmány a kemp
+    road_note: Poslední část je úzká, klikatá a pomalejší; nejezdit za tmy.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 70
+    - 95
+    distance_km_approx: 48
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: full_day
+    combine_with: []
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 5
+    overnight: 3
+    route_fit: 3
+  tags:
+  - lake
+  - swimming
+  - quiet
+  - family
+  - scenic-road
+  photos: []
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.1513&mlon=19.2168#map=14/42.1513/19.2168
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.1513,19.2168
+    info: https://lovinmontenegro.com/attractions/bar-municipality/donji-murici/murici-beach/
+  notes: Výborné pro klidný koupací den; méně vhodné pro někoho, komu vadí úzké horské silnice.
+- id: base-rijeka-crnojevica-pavlova
+  name: Rijeka Crnojevića a vyhlídka Pavlova Strana
+  short_name: Pavlova Strana
+  order: 106
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.3596
+    lon: 19.0578
+    precision: viewpoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Cetinje / Skadarské jezero
+  presentation:
+    category: viewpoint
+    icon_id: viewpoint
+  summary: Ikonický pohled na podkovu řeky a pohodová historická vesnice s kamenným mostem.
+  highlights:
+  - nejfotogeničtější vyhlídka na jezero
+  - Danilův most
+  - říční restaurace
+  - možnost krátké plavby
+  activities:
+  - vyhlídka
+  - oběd
+  - krátká procházka
+  - loď
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 150
+    - 300
+    best_time: morning_or_late_afternoon
+    crowds_in_august: medium_high
+  swimming:
+    available: conditional
+    type: river_or_lake_from_boat
+    confidence: low
+    notes: Není to primárně koupací cíl; záleží na lokálním místě a plavbě.
+  logistics:
+    detour_level: medium
+    parking: limited_at_viewpoint
+    overnight_score: 4
+    accommodation_style: menší penziony a restaurace u řeky
+    road_note: Poslední silnice je úzká; na vyhlídce je jen několik míst k odstavení.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 70
+    - 95
+    distance_km_approx: 55
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-cetinje
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 1
+    overnight: 4
+    route_fit: 4
+  tags:
+  - viewpoint
+  - lake
+  - river
+  - photography
+  - old-bridge
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Pavlova%20Strana%2C%20Rijeka%20Crnojevi%C4%87a%2C%20Cetinje.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Pavlova%20Strana%2C%20Rijeka%20Crnojevi%C4%87a%2C%20Cetinje.jpg
+    caption: Vyhlídka Pavlova Strana
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Rijeka%20Crnojevica%20Port.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Rijeka%20Crnojevica%20Port.jpg
+    caption: Most a přístaviště v Rijeka Crnojevića
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.3596&mlon=19.0578#map=14/42.3596/19.0578
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.3596,19.0578
+    info: https://www.montenegro.travel/en/rijeka-crnojevica
+  notes: Dává smysl spojit s Cetinje; s Lovćenem už by byl den dlouhý.
+- id: base-lipa-cave
+  name: Lipská jeskyně
+  short_name: Lipa Cave
+  order: 107
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.3646
+    lon: 18.9918
+    precision: visitor_center
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Cetinje
+  presentation:
+    category: cave
+    icon_id: cave
+  summary: Přístupná velká krasová jeskyně s organizovanou prohlídkou a krátkým turistickým vláčkem.
+  highlights:
+  - obří podzemní dómy
+  - krápníková výzdoba
+  - příjemný chlad
+  - vláček od parkoviště
+  activities:
+  - jeskyně
+  - komentovaná prohlídka
+  - geologie
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 120
+    - 180
+    best_time: hot_midday
+    crowds_in_august: medium_high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: low
+    parking: easy
+    overnight_score: 2
+    accommodation_style: ubytování spíš v Cetinje
+    road_note: Rezervovat konkrétní čas prohlídky; uvnitř je výrazně chladněji.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 72
+    - 92
+    distance_km_approx: 62
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_day
+    combine_with:
+    - base-cetinje
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 0
+    overnight: 2
+    route_fit: 4
+  tags:
+  - cave
+  - kids
+  - rainy-day
+  - hot-weather
+  - geology
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Lipa%20Cave%20Big%20Hall.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Lipa%20Cave%20Big%20Hall.jpg
+    caption: Velký dóm Lipské jeskyně
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.3646&mlon=18.9918#map=14/42.3646/18.9918
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.3646,18.9918
+    info: https://lipa-cave.me/
+    official: https://lipa-cave.me/lipa-cave-all-you-need-to-know-before-you-go/
+  notes: Skvělý dětský program; kočárek neřešíme, ale pevné boty a mikina jsou vhodné.
+- id: base-cetinje
+  name: Cetinje, staré královské hlavní město
+  short_name: Cetinje
+  order: 108
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.38802
+    lon: 18.92251
+    precision: historic_center
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Cetinje
+  presentation:
+    category: royal_city
+    icon_id: royal_city
+  summary: Klidné bývalé královské město s muzei, klášterem a starými ambasádami.
+  highlights:
+  - Cetinjski klášter
+  - Palác krále Nikoly
+  - Biljarda
+  - staré ambasády a pěší centrum
+  activities:
+  - muzea
+  - historie
+  - klášter
+  - kavárna
+  family:
+    child_fit: 3
+    grandparent_fit: 5
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 180
+    - 330
+    best_time: late_morning
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: low
+    parking: medium_easy
+    overnight_score: 4
+    accommodation_style: městské hotely a apartmány
+    road_note: Centrum je kompaktní a převážně rovinaté.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 70
+    - 90
+    distance_km_approx: 63
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-lipa-cave
+    - base-rijeka-crnojevica-pavlova
+  ratings:
+    wow: 4
+    kids: 3
+    swimming: 0
+    overnight: 4
+    route_fit: 4
+  tags:
+  - history
+  - museum
+  - royal
+  - monastery
+  - city
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Cetinje%20monastery.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Cetinje%20monastery.jpg
+    caption: Cetinjský klášter
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/The%20Cetinje%20Monastery%2C%20Montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:The%20Cetinje%20Monastery%2C%20Montenegro.jpg
+    caption: Klášter v Cetinje
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.38802&mlon=18.92251#map=14/42.38802/18.92251
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.38802,18.92251
+    info: https://www.montenegro.travel/en/explore-montenegro/cities/cetinje
+  notes: Pro děti bude lepší spojit město s jeskyní než s dalším dlouhým muzeem.
+- id: base-lovcen-mausoleum
+  name: Lovćen a Njegošovo mauzoleum
+  short_name: Lovćen
+  order: 109
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.400574
+    lon: 18.837135
+    precision: attraction
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Národní park Lovćen
+  presentation:
+    category: mountain
+    icon_id: mountain
+  summary: Největší horská vyhlídka dosažitelná autem z Baru, zakončená monumentálním mauzoleem.
+  highlights:
+  - panorama hor a moře
+  - monumentální tunel a sochy
+  - horský vzduch
+  - symbol Černé Hory
+  activities:
+  - vyhlídka
+  - mauzoleum
+  - krátká horská procházka
+  family:
+    child_fit: 4
+    grandparent_fit: 2
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 150
+    - 240
+    best_time: morning_clear_weather
+    crowds_in_august: high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: medium
+    parking: limited_in_peak
+    overnight_score: 3
+    accommodation_style: horské penziony v Ivanova Korita nebo Cetinje
+    road_note: Klikatá horská silnice; k mauzoleu vede přibližně 461 schodů.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 100
+    - 118
+    distance_km_approx: 85
+    max_two_hours_confidence: medium
+    summer_peak_may_exceed_120: true
+    recommended_day_type: full_day
+    combine_with:
+    - base-cetinje
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 3
+    route_fit: 3
+  tags:
+  - mountain
+  - viewpoint
+  - mausoleum
+  - steps
+  - weather-dependent
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Njego%C5%A1-Mausoleum.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Njego%C5%A1-Mausoleum.jpg
+    caption: Njegošovo mauzoleum na Lovćenu
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Njegos%20mausoleum%20montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Njegos%20mausoleum%20montenegro.jpg
+    caption: Mauzoleum a horská krajina
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.400574&mlon=18.837135#map=14/42.400574/18.837135
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.400574,18.837135
+    info: https://visitcetinje.com/en/lovcen-njegos-mausoleum/
+  notes: Jediný bod v seznamu, který může v silné letní dopravě překročit dvě hodiny; vyjet brzy a sledovat navigaci.
+- id: base-ostrog
+  name: Klášter Ostrog
+  short_name: Ostrog
+  order: 110
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.6746
+    lon: 19.0307
+    precision: attraction
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Danilovgrad / Nikšić
+  presentation:
+    category: monastery
+    icon_id: monastery
+  summary: Bílý pravoslavný klášter zasazený přímo do vysoké skalní stěny; architektonicky mimořádné místo.
+  highlights:
+  - klášter ve skále
+  - výhled do údolí Zety
+  - poutní atmosféra
+  - skalní kaple
+  activities:
+  - památka
+  - duchovní místo
+  - výhled
+  - krátká pěší cesta
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 120
+    - 210
+    best_time: early_morning
+    crowds_in_august: high
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    detour_level: medium
+    parking: medium
+    overnight_score: 2
+    accommodation_style: poutní a jednoduché ubytování v okolí
+    road_note: Závěrečný příjezd je úzký; lze využít místní minibus mezi dolní a horní částí.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 90
+    - 115
+    distance_km_approx: 95
+    max_two_hours_confidence: medium_high
+    summer_peak_may_exceed_120: true
+    recommended_day_type: full_day
+    combine_with: []
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 2
+    route_fit: 3
+  tags:
+  - monastery
+  - architecture
+  - religion
+  - cliff
+  - crowded
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Montenegro%20-%20Ostrog%20monastery.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Montenegro%20-%20Ostrog%20monastery.JPG
+    caption: Klášter Ostrog ve skalní stěně
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Monasterio%20de%20Ostrog%2C%20Montenegro%2C%202014-04-14%2C%20DD%2014.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Monasterio%20de%20Ostrog%2C%20Montenegro%2C%202014-04-14%2C%20DD%2014.JPG
+    caption: Horní klášter Ostrog
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.6746&mlon=19.0307#map=14/42.6746/19.0307
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.6746,19.0307
+    info: https://www.montenegro.travel/en/unique-montenegro/cultural-heritage/ostrog-monastery
+  notes: Respektovat oděv a poutní charakter. V srpnu vyrazit velmi brzy.
+- id: base-ulcinj-old-town
+  name: Staré město Ulcinj
+  short_name: Ulcinj
+  order: 111
+  route_group: base
+  status: candidate
+  position:
+    lat: 41.922244
+    lon: 19.201414
+    precision: historic_center
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Ulcinj
+  presentation:
+    category: city
+    icon_id: city
+  summary: Opevněné pirátské město s orientální atmosférou, výhledem na moře a restauracemi ve hradbách.
+  highlights:
+  - citadela a hradby
+  - pirátská historie
+  - orientální uličky
+  - výhled na Malou pláž
+  activities:
+  - historie
+  - procházka
+  - oběd
+  - výhled
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 150
+    - 270
+    best_time: morning_or_evening
+    crowds_in_august: high
+  swimming:
+    available: nearby
+    type: sea_beach
+    confidence: high
+    notes: Malá pláž pod městem bývá v sezoně velmi plná; lepší spojit s Velika Plaža.
+  logistics:
+    detour_level: low
+    parking: difficult_in_peak
+    overnight_score: 5
+    accommodation_style: hotely a apartmány ve starém městě a okolí
+    road_note: Zaparkovat mimo hradby; uvnitř jsou schody a dlažba.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 35
+    - 50
+    distance_km_approx: 28
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-velika-plaza
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 3
+    overnight: 5
+    route_fit: 5
+  tags:
+  - history
+  - old-town
+  - pirates
+  - oriental
+  - sea
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Ulcinj%20Old%20Town%2C%20August%202012.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Ulcinj%20Old%20Town%2C%20August%202012.jpg
+    caption: Opevněné staré město Ulcinj
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Ulcinj%20old%20town.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Ulcinj%20old%20town.jpg
+    caption: Ulička ve starém městě
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=41.922244&mlon=19.201414#map=14/41.922244/19.201414
+    google_maps: https://www.google.com/maps/search/?api=1&query=41.922244,19.201414
+    info: https://whc.unesco.org/en/tentativelists/6300/
+  notes: Nejlepší kombinovat dopolední město a odpolední písečnou pláž.
+- id: base-velika-plaza
+  name: Velika Plaža
+  short_name: Velika Plaža
+  order: 112
+  route_group: base
+  status: candidate
+  position:
+    lat: 41.906
+    lon: 19.275
+    precision: beach_area
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Ulcinj
+  presentation:
+    category: beach
+    icon_id: beach
+  summary: Třináctikilometrový pás skutečného jemného písku a mělkého moře; nejlepší písečný den pro děti.
+  highlights:
+  - jemný písek
+  - dlouhá mělčina
+  - velký prostor
+  - beach kluby a kite zóny
+  activities:
+  - koupání
+  - stavění z písku
+  - pláž
+  - vodní sporty
+  family:
+    child_fit: 5
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 240
+    - 480
+    best_time: morning_to_late_afternoon
+    crowds_in_august: medium_high
+  swimming:
+    available: true
+    type: sea_sandy_shallow
+    confidence: high
+    notes: Vítr a vlny mohou zhoršit průzračnost; pro děti je vstup obvykle pozvolný.
+  logistics:
+    detour_level: low
+    parking: varies_by_beach_club
+    overnight_score: 4
+    accommodation_style: resorty, kempy a apartmány
+    road_note: Vybrat konkrétní úsek předem; pláž je velmi dlouhá.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 45
+    - 62
+    distance_km_approx: 38
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: full_day
+    combine_with:
+    - base-ulcinj-old-town
+    - base-ada-bojana
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 5
+    overnight: 4
+    route_fit: 5
+  tags:
+  - sand
+  - beach
+  - kids
+  - shallow-water
+  - full-day
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Czarnog%C3%B3ra%20-%20Ulcinj%20-%20Wielka%20Pla%C5%BCa%20-%20panoramio.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Czarnog%C3%B3ra%20-%20Ulcinj%20-%20Wielka%20Pla%C5%BCa%20-%20panoramio.jpg
+    caption: Písečná Velika Plaža
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=41.906&mlon=19.275#map=14/41.906/19.275
+    google_maps: https://www.google.com/maps/search/?api=1&query=41.906,19.275
+    info: https://www.montenegro.travel/en/inspiration-for-a-dream-trip/en167/top-10-attractions-of-montenegro
+  notes: Pro vaši rodinu jeden z nejsilnějších koupacích výletů; na šnorchlování je slabší.
+- id: base-ada-bojana
+  name: Ada Bojana a ústí řeky Bojany
+  short_name: Ada Bojana
+  order: 113
+  route_group: base
+  status: candidate
+  position:
+    lat: 41.867733
+    lon: 19.335575
+    precision: island_area
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Ulcinj
+  presentation:
+    category: beach
+    icon_id: beach
+  summary: Písečný ostrov v deltě řeky s restauracemi na kůlech, kitesurfingem a neobvyklou krajinou.
+  highlights:
+  - delta řeky
+  - rybí restaurace nad vodou
+  - písek a západ slunce
+  - kite atmosféra
+  activities:
+  - pláž
+  - oběd z čerstvých ryb
+  - pozorování kitesurferů
+  - procházka deltou
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 240
+    - 420
+    best_time: afternoon_and_sunset
+    crowds_in_august: medium_high
+  swimming:
+    available: true
+    type: sea_and_river_delta_sandy
+    confidence: medium
+    notes: Pozor na proudy u ústí řeky; koupat se jen na určených plážových úsecích.
+  logistics:
+    detour_level: medium
+    parking: medium
+    overnight_score: 5
+    accommodation_style: bungalovy, FKK resort a říční domky
+    road_note: Některé části jsou naturistické; pro rodinu zvolit konkrétní běžnou pláž nebo restauraci.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 60
+    - 80
+    distance_km_approx: 52
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: full_day
+    combine_with:
+    - base-velika-plaza
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 4
+    overnight: 5
+    route_fit: 4
+  tags:
+  - delta
+  - sand
+  - fish
+  - kite
+  - sunset
+  - naturist-sections
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Ada%20Bojana.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Ada%20Bojana.JPG
+    caption: Ústí řeky a ostrov Ada Bojana
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Buna%20delta%20%28WPWTR16%29.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Buna%20delta%20%28WPWTR16%29.JPG
+    caption: Letecký pohled na deltu Bojany
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=41.867733&mlon=19.335575#map=14/41.867733/19.335575
+    google_maps: https://www.google.com/maps/search/?api=1&query=41.867733,19.335575
+    info: https://www.montenegro.travel/en/explore-montenegro/vacations-on-montenegro-s-adriatic-coast
+  notes: Před cestou vybrat nenaturistický úsek; restaurace na řece jsou hlavní součást zážitku.
+- id: base-petrovac
+  name: Petrovac a pevnost Kastio
+  short_name: Petrovac
+  order: 114
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.205164
+    lon: 18.937061
+    precision: waterfront
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Budvanská riviéra
+  presentation:
+    category: city
+    icon_id: city
+  summary: Menší a klidnější pobřežní město s promenádou, pevností, pláží a ostrůvky v zátoce.
+  highlights:
+  - pevnost Kastio
+  - pobřežní promenáda
+  - ostrůvky Katič a Sveta Nedjelja
+  - příjemnější tempo než Budva
+  activities:
+  - procházka
+  - koupání
+  - loďka
+  - večeře
+  family:
+    child_fit: 5
+    grandparent_fit: 5
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 240
+    - 420
+    best_time: late_morning_to_evening
+    crowds_in_august: high
+  swimming:
+    available: true
+    type: sea_pebble_and_coarse_sand
+    confidence: high
+    notes: Hlavní pláž bývá plná; alternativou je Lučice.
+  logistics:
+    detour_level: low
+    parking: difficult_in_peak
+    overnight_score: 5
+    accommodation_style: hotely, apartmány a menší resorty
+    road_note: Pobřežní magistrála může být pomalá, ale Petrovac je výrazně blíž než Budva.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 35
+    - 50
+    distance_km_approx: 34
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-sveti-stefan
+  ratings:
+    wow: 4
+    kids: 5
+    swimming: 4
+    overnight: 5
+    route_fit: 5
+  tags:
+  - seaside-town
+  - fortress
+  - promenade
+  - swimming
+  - family
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Montenegro.%20Petrovac%2020.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Montenegro.%20Petrovac%2020.jpg
+    caption: Petrovac a pevnost Kastio
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Petrovac%27s%20Bay.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Petrovac%27s%20Bay.jpg
+    caption: Zátoka Petrovac
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.205164&mlon=18.937061#map=14/42.205164/18.937061
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.205164,18.937061
+    info: https://www.montenegro.travel/en/explore-montenegro/cities/petrovac
+  notes: Za mě nejlepší lehký pobřežní výlet pro všechny generace.
+- id: base-sveti-stefan
+  name: Sveti Stefan, vyhlídka a pláž
+  short_name: Sveti Stefan
+  order: 115
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.2558
+    lon: 18.8969
+    precision: viewpoint
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Budvanská riviéra
+  presentation:
+    category: viewpoint
+    icon_id: viewpoint
+  summary: Nejznámější černohorská pobřežní pohlednice; výhled na opevněný ostrůvek a dvojici pláží.
+  highlights:
+  - ikonický ostrov
+  - výhled z magistrály
+  - park Miločer
+  - pobřežní cesta
+  activities:
+  - fotografování
+  - krátká procházka
+  - koupání
+  - park
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 90
+    - 240
+    best_time: morning_or_sunset
+    crowds_in_august: high
+  swimming:
+    available: true
+    type: sea_pebble_beach
+    confidence: high
+    notes: Přístup a ceny jednotlivých plážových úseků se mohou měnit; ostrovní hotel nemusí být veřejně přístupný.
+  logistics:
+    detour_level: low
+    parking: difficult_expensive
+    overnight_score: 4
+    accommodation_style: luxusní hotely a apartmány ve svahu
+    road_note: Na samotnou fotku stačí vyhlídka; sestup k pláži je delší a zpět do kopce.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 45
+    - 65
+    distance_km_approx: 45
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: short_or_half_day
+    combine_with:
+    - base-petrovac
+    - base-budva-old-town
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 3
+    overnight: 4
+    route_fit: 5
+  tags:
+  - iconic
+  - viewpoint
+  - beach
+  - photography
+  - parking-warning
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Budva%20-%20Sveti%20Stefan%204.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Budva%20-%20Sveti%20Stefan%204.jpg
+    caption: Opevněný ostrov Sveti Stefan
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/WV%20banner%20Budva%20Riviera%20Sveti%20Stefan.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:WV%20banner%20Budva%20Riviera%20Sveti%20Stefan.jpg
+    caption: Panorama Sveti Stefanu
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.2558&mlon=18.8969#map=14/42.2558/18.8969
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.2558,18.8969
+    info: https://www.montenegro.travel/en/explore-montenegro/vacations-on-montenegro-s-adriatic-coast/popular-beaches
+  notes: Nejlepší jako 30–60minutová zastávka cestou do Budvy nebo z Petrovce.
+- id: base-budva-old-town
+  name: Staré město Budva
+  short_name: Budva
+  order: 116
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.278
+    lon: 18.8375
+    precision: historic_center
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Budva
+  presentation:
+    category: city
+    icon_id: city
+  summary: Živé opevněné staré město, citadela, marina a večerní atmosféra; kontrast ke klidnějšímu Baru.
+  highlights:
+  - hradby a citadela
+  - úzké kamenné uličky
+  - marina
+  - Mogren a socha tanečnice
+  activities:
+  - historie
+  - večerní procházka
+  - restaurace
+  - koupání
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 180
+    - 360
+    best_time: late_afternoon_and_evening
+    crowds_in_august: very_high
+  swimming:
+    available: nearby
+    type: sea_beach
+    confidence: high
+    notes: Mogren je atraktivní, ale v srpnu velmi plný.
+  logistics:
+    detour_level: low
+    parking: difficult_expensive
+    overnight_score: 5
+    accommodation_style: všechny kategorie ubytování
+    road_note: V srpnové koloně může cesta výrazně zpomalit; zaparkovat mimo historické jádro.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 55
+    - 85
+    distance_km_approx: 52
+    max_two_hours_confidence: medium_high
+    summer_peak_may_exceed_120: true
+    recommended_day_type: half_or_full_day
+    combine_with:
+    - base-sveti-stefan
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 3
+    overnight: 5
+    route_fit: 4
+  tags:
+  - old-town
+  - nightlife
+  - history
+  - crowded
+  - evening
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Budva%20Old%20Town%2C%20Montenegro.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Budva%20Old%20Town%2C%20Montenegro.jpg
+    caption: Věž ve starém městě Budva
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Old%20Town%2C%20Budva%2C%20Montenegro%20-%20panoramio%20%2812%29.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Old%20Town%2C%20Budva%2C%20Montenegro%20-%20panoramio%20%2812%29.jpg
+    caption: Opevněné jádro Budvy
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.278&mlon=18.8375#map=14/42.278/18.8375
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.278,18.8375
+    info: https://www.montenegro.travel/en/explore-montenegro/cities/budva
+  notes: Na srpnový výlet je ideální přijet až později odpoledne a vracet se po večeři.
+- id: base-cijevna-niagara
+  name: Cijevna / Niagarské vodopády
+  short_name: Cijevna
+  order: 117
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.38372
+    lon: 19.27877
+    precision: waterfall
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Podgorica
+  presentation:
+    category: waterfall
+    icon_id: waterfall
+  summary: Skalnatý kaňon řeky u Podgorice s koupacími tůněmi; samotný vodopád může být v srpnu téměř suchý.
+  highlights:
+  - skalní řeka
+  - koupací tůně
+  - restaurace u vody
+  - krátká dostupnost
+  activities:
+  - koupání
+  - oběd
+  - skalní kaňon
+  - fotografování
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 120
+    - 240
+    best_time: hot_afternoon
+    crowds_in_august: medium_high
+  swimming:
+    available: conditional
+    type: freshwater_rock_pools
+    confidence: medium
+    notes: Ověřit průtok a bezpečný přístup; skály mohou klouzat a voda má proměnlivou hloubku.
+  logistics:
+    detour_level: low
+    parking: medium
+    overnight_score: 2
+    accommodation_style: restaurace a městské ubytování v Podgorici
+    road_note: Snadný výlet přes tunel Sozina; od parkování je krátký přístup.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 58
+    - 75
+    distance_km_approx: 58
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_day
+    combine_with: []
+  ratings:
+    wow: 3
+    kids: 4
+    swimming: 4
+    overnight: 2
+    route_fit: 4
+  tags:
+  - river
+  - swimming
+  - waterfall-seasonal
+  - rocks
+  - restaurant
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Cijevna%20%28Cem%29%20river%20in%20Montenegro%2007.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Cijevna%20%28Cem%29%20river%20in%20Montenegro%2007.jpg
+    caption: Kaskády řeky Cijevna
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Cijevna%20%28Cem%29%20river%20in%20Montenegro%2008.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Cijevna%20%28Cem%29%20river%20in%20Montenegro%2008.jpg
+    caption: Skalnaté koryto Cijevny
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.38372&mlon=19.27877#map=14/42.38372/19.27877
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.38372,19.27877
+    info: https://www.montenegro.travel/en/explore-montenegro/nature-and-adventure
+  notes: Neplánovat jen kvůli vodopádu; v srpnu je hlavní hodnotou koupání ve skalní řece.
+- id: base-utjeha
+  name: Utjeha / Uvala Maslina
+  short_name: Utjeha
+  order: 118
+  route_group: base
+  status: candidate
+  position:
+    lat: 42.010495
+    lon: 19.151093
+    precision: beach
+  location:
+    country: Černá Hora
+    country_code: ME
+    region: Bar
+  presentation:
+    category: beach
+    icon_id: beach
+  summary: Malá zátoka s velmi průzračnou vodou, bílými oblázky a dobrým šnorchlováním.
+  highlights:
+  - tyrkysová voda
+  - šnorchlování
+  - kompaktní zátoka
+  - olivové háje v okolí
+  activities:
+  - koupání
+  - šnorchlování
+  - oběd
+  - půldenní relax
+  family:
+    child_fit: 4
+    grandparent_fit: 3
+    child_ages_considered: *id001
+  visit:
+    recommended_duration_min:
+    - 180
+    - 360
+    best_time: morning
+    crowds_in_august: high
+  swimming:
+    available: true
+    type: sea_pebble_rocky_clear
+    confidence: high
+    notes: Boty do vody vhodné; vstup se místy rychleji prohlubuje.
+  logistics:
+    detour_level: none
+    parking: difficult_in_peak
+    overnight_score: 3
+    accommodation_style: apartmány ve svahu
+    road_note: Velmi krátký dojezd na jih od Baru; přijet brzy kvůli parkování.
+  base_trip:
+    drive_from_bar_min_typical:
+    - 18
+    - 28
+    distance_km_approx: 15
+    max_two_hours_confidence: high
+    summer_peak_may_exceed_120: false
+    recommended_day_type: half_day
+    combine_with:
+    - base-stari-bar
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 5
+    overnight: 3
+    route_fit: 5
+  tags:
+  - clear-water
+  - snorkeling
+  - pebbles
+  - nearby
+  - parking-warning
+  photos: []
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=42.010495&mlon=19.151093#map=14/42.010495/19.151093
+    google_maps: https://www.google.com/maps/search/?api=1&query=42.010495,19.151093
+    info: https://www.beach-on-map.com/utjeha.html
+  notes: Nejlepší blízká varianta, když chcete hlavně čistou vodu a šnorchl, nikoli písek.

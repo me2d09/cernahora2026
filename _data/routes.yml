@@ -50,3 +50,17 @@ direct_routes:
         lon: 18.844620
         name: Hraniční přechod Hum–Šćepan Polje
         optional: false
+  
+  - id: bosnia-jajce-trebinje
+    name: Přes Jajce a Trebinje
+    color: "#9b5de5"
+    description: Záhřeb – Banja Luka – Jajce – Mostar – Trebinje – Nikšić – Bar
+    via:
+      - lat: 44.342360
+        lon: 17.270780
+        name: M5 – průjezd Jajce
+        optional: false
+      - lat: 42.711870
+        lon: 18.347680
+        name: M20 – průjezd Trebinje
+        optional: false
