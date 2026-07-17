@@ -541,6 +541,87 @@ h1 {
   opacity: 0.45;
 }
 
+.direct-route-legend {
+  position: absolute;
+  z-index: 500;
+  top: 4.15rem;
+  left: 0.8rem;
+  width: min(270px, calc(100% - 1.6rem));
+  padding: 0.7rem 0.75rem;
+  border: 1px solid rgba(29, 43, 37, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: 0 8px 25px rgba(29, 43, 37, 0.14);
+  pointer-events: none;
+}
+
+.direct-route-legend[hidden] {
+  display: none;
+}
+
+.direct-route-legend > strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.direct-route-legend-item {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.28rem 0;
+}
+
+.direct-route-swatch {
+  display: block;
+  width: 1.8rem;
+  height: 0.25rem;
+  border-radius: 999px;
+  opacity: 0.65;
+}
+
+.direct-route-legend-copy,
+.direct-route-legend-copy strong,
+.direct-route-legend-copy small {
+  display: block;
+  min-width: 0;
+}
+
+.direct-route-legend-copy strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.7rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.direct-route-legend-copy small {
+  margin-top: 0.08rem;
+  overflow: hidden;
+  color: var(--ink-muted);
+  font-size: 0.58rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.direct-route-legend-item.is-loading {
+  opacity: 0.62;
+}
+
+.direct-route-legend-item.is-error .direct-route-swatch {
+  background: var(--ink-muted) !important;
+}
+
+.direct-route-legend-item.is-error small {
+  color: #a23e25;
+}
+
 .map-legend {
   position: absolute;
   z-index: 500;
@@ -1307,6 +1388,25 @@ h1 {
   }
 
   .map-provider-switch > span {
+    display: none;
+  }
+
+  .direct-route-legend {
+    top: 3.85rem;
+    left: 0.55rem;
+    width: min(235px, calc(100% - 1.1rem));
+    padding: 0.55rem 0.65rem;
+  }
+
+  .direct-route-legend > strong {
+    margin-bottom: 0.25rem;
+  }
+
+  .direct-route-legend-item {
+    padding-block: 0.2rem;
+  }
+
+  .direct-route-legend-copy small {
     display: none;
   }
 

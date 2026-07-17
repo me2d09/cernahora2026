@@ -1,8 +1,8 @@
 # Montenegro Roadtrip 2026
 
-A responsive Jekyll website for presenting and planning a family roadtrip from Prague to Montenegro. The current version contains one main section: an interactive map with candidate stops for the outbound and return journeys.
+A responsive Jekyll website for presenting and planning a family roadtrip from Revnice to Montenegro. The current version contains one main section: an interactive map with candidate stops for the outbound and return journeys.
 
-All trip content is loaded from `_data/waypoints.yml`. That file is treated as the source of truth and should not be duplicated in JavaScript or templates.
+Waypoint content is loaded from `_data/waypoints.yml`, while the permanent route corridors are defined in `_data/routes.yml`. These data files are treated as the source of truth and should not be duplicated in JavaScript or templates.
 
 ## Technology
 
@@ -68,7 +68,7 @@ Set `provider: mapy` to make Mapy.com the initial layer without removing the Ope
 
 Available Mapy.com raster map sets include `basic`, `outdoor`, `winter`, and `aerial`. Mapy.com calls require an API key and consume project credits. A key embedded in a static GitHub Pages site is visible to visitors, so it must be a web key intended for client-side use and protected with the restrictions supported by Mapy.com.
 
-The Mapy.com logo and copyright attribution are added only while the Mapy.com layer is active. OpenStreetMap displays its own attribution when selected.
+The Mapy.com tile attribution is added while its base layer is active. The Mapy.com logo and routing attribution also remain visible whenever Mapy.com route geometry is displayed, including over the OpenStreetMap base layer.
 
 ## Waypoint presentation
 
@@ -77,7 +77,7 @@ Each valid entry from `waypoints` is rendered in two places:
 - as an accessible button in the waypoint list;
 - as a Leaflet marker with a compact popup card.
 
-Prague and XIO Apartments are fixed map points and remain visible at all times. Outbound, return, and stay locations are independent optional layers. Enabling a layer fits the viewport only to that layer's optional points, so fixed Prague does not affect the outbound or return zoom. Empty optional layers are shown with a zero count and disabled until data is added.
+The fixed start waypoint and the destination configured at `trip.destination.waypoint_id` remain visible at all times. Outbound, return, and stay locations are independent optional layers. Enabling a layer fits the viewport only to that layer's optional points, so the fixed endpoints do not affect the outbound or return zoom. Empty optional layers are shown with a zero count and disabled until data is added.
 
 The popup uses existing fields when available:
 
@@ -118,12 +118,15 @@ Changing, reordering, or removing a selected point clears the previous result an
 
 Mapy.com routing attribution and the provider logo remain visible while a calculated route is displayed, including when the selected base map is OpenStreetMap.
 
+The map also loads every entry from `_data/routes.yml` as a permanent translucent background corridor. Each corridor is calculated independently from the fixed start waypoint to `trip.destination.waypoint_id`, using all listed `via` coordinates in their defined order. A failed corridor request is reported in the legend without hiding the other corridors or breaking waypoint interaction. The interactive route uses a separate higher map pane so it remains visually distinct.
+
 ## Project structure
 
 ```text
 .
 ├── _config.yml
 ├── _data/
+│   ├── routes.yml
 │   └── waypoints.yml
 ├── _layouts/
 │   ├── default.html

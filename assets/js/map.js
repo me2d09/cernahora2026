@@ -45,12 +45,15 @@
     ? tripData.directRoutes
     : [];
   const MAX_ROUTE_POINTS = 5;
+  const ROUTING_ATTRIBUTION =
+    '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>';
 
   const state = {
     activeGroups: new Set(),
     activeProvider: null,
     baseLayers: {},
     directRoutes: {
+      legendItems: new Map(),
       layers: [],
       loadedCount: 0
     },
@@ -125,6 +128,173 @@
     const plannedRoutePane = state.map.createPane("plannedRoutePane");
     plannedRoutePane.style.zIndex = "410";
     plannedRoutePane.style.pointerEvents = "none";
+  }
+
+  function loadDirectRoutes() {
+    renderDirectRouteLegend();
+
+    if (directRoutes.length === 0) {
+      return;
+    }
+
+    if (!state.routingProvider) {
+      directRoutes.forEach(function (route) {
+        updateDirectRouteLegend(route, "error");
+      });
+      return;
+    }
+
+    const endpoints = getDirectRouteEndpoints();
+    if (!endpoints) {
+      directRoutes.forEach(function (route) {
+        updateDirectRouteLegend(route, "error");
+      });
+      return;
+    }
+
+    directRoutes.forEach(function (route) {
+      loadDirectRoute(route, endpoints);
+    });
+  }
+
+  async function loadDirectRoute(route, endpoints) {
+    if (!isValidDirectRoute(route)) {
+      updateDirectRouteLegend(route, "error");
+      return;
+    }
+
+    const routeWaypoints = [
+      endpoints.start
+    ].concat(
+      route.via.filter(isValidDirectRoutePoint).map(function (point) {
+        return {
+          position: {
+            lat: Number(point.lat),
+            lon: Number(point.lon)
+          }
+        };
+      }),
+      [endpoints.destination]
+    );
+
+    try {
+      const result = await state.routingProvider.calculate(routeWaypoints);
+      const layer = L.geoJSON(result.geometry, {
+        pane: "directRoutesPane",
+        style: {
+          color: getDirectRouteColor(route),
+          lineCap: "round",
+          lineJoin: "round",
+          opacity: 0.3,
+          weight: 5
+        }
+      }).addTo(state.map);
+
+      state.directRoutes.layers.push(layer);
+      state.directRoutes.loadedCount = state.directRoutes.layers.length;
+      updateDirectRouteLegend(route, "ready");
+      updateRoutingAttribution();
+      updateMapyLogo();
+    } catch (error) {
+      updateDirectRouteLegend(route, "error");
+    }
+  }
+
+  function getDirectRouteEndpoints() {
+    const destinationId =
+      tripData.trip &&
+      tripData.trip.destination &&
+      tripData.trip.destination.waypoint_id;
+    const start = waypoints.find(function (waypoint) {
+      return (
+        waypoint.status === "fixed" &&
+        waypoint.presentation &&
+        waypoint.presentation.category === "start"
+      );
+    });
+    const destination = destinationId && waypointsById.get(destinationId);
+
+    return start && destination ? { start, destination } : null;
+  }
+
+  function isValidDirectRoute(route) {
+    return (
+      route &&
+      typeof route.id === "string" &&
+      typeof route.name === "string" &&
+      Array.isArray(route.via)
+    );
+  }
+
+  function isValidDirectRoutePoint(point) {
+    const latitude = Number(point && point.lat);
+    const longitude = Number(point && point.lon);
+
+    return (
+      Number.isFinite(latitude) &&
+      Number.isFinite(longitude) &&
+      Math.abs(latitude) <= 90 &&
+      Math.abs(longitude) <= 180
+    );
+  }
+
+  function getDirectRouteColor(route) {
+    return /^#[0-9a-f]{6}$/i.test(route && route.color)
+      ? route.color
+      : "#215c45";
+  }
+
+  function renderDirectRouteLegend() {
+    if (!directRouteLegendElement || !directRouteLegendItemsElement) {
+      return;
+    }
+
+    directRouteLegendElement.hidden = directRoutes.length === 0;
+    directRouteLegendItemsElement.replaceChildren();
+    state.directRoutes.legendItems.clear();
+
+    directRoutes.forEach(function (route) {
+      const item = createElement("div", "direct-route-legend-item is-loading");
+      const swatch = createElement("i", "direct-route-swatch");
+      swatch.style.backgroundColor = getDirectRouteColor(route);
+      item.appendChild(swatch);
+
+      const copy = createElement("span", "direct-route-legend-copy");
+      copy.appendChild(
+        createElement("strong", "", route.name || "Trasa do XIO")
+      );
+      copy.appendChild(createElement("small", "", "Načítám trasu…"));
+      item.appendChild(copy);
+
+      directRouteLegendItemsElement.appendChild(item);
+      if (route && typeof route.id === "string") {
+        state.directRoutes.legendItems.set(route.id, item);
+      }
+    });
+  }
+
+  function updateDirectRouteLegend(route, status) {
+    const item =
+      route &&
+      typeof route.id === "string" &&
+      state.directRoutes.legendItems.get(route.id);
+
+    if (!item) {
+      return;
+    }
+
+    item.classList.toggle("is-loading", status === "loading");
+    item.classList.toggle("is-error", status === "error");
+
+    const statusElement = item.querySelector("small");
+    if (!statusElement) {
+      return;
+    }
+
+    statusElement.textContent =
+      status === "error"
+        ? "Trasu se nepodařilo načíst."
+        : route.description || "Nejrychlejší varianta autem";
   }
 
   function createRoutingProvider() {
@@ -220,7 +390,9 @@
 
   function updateMapyLogo() {
     const shouldShowLogo =
-      state.activeProvider === "mapy" || Boolean(state.route.layer);
+      state.activeProvider === "mapy" ||
+      Boolean(state.route.layer) ||
+      state.directRoutes.loadedCount > 0;
 
     if (shouldShowLogo) {
       if (!state.mapyLogoControl) {
@@ -638,6 +810,7 @@
 
       state.route.result = result;
       state.route.layer = L.geoJSON(result.geometry, {
+        pane: "plannedRoutePane",
         style: {
           color: "#d95f2b",
           opacity: 0.92,
@@ -645,7 +818,7 @@
         }
       }).addTo(state.map);
 
-      addRoutingAttribution();
+      updateRoutingAttribution();
       updateMapyLogo();
       state.map.fitBounds(state.route.layer.getBounds(), {
         padding: [45, 45],
@@ -673,32 +846,30 @@
       state.route.layer = null;
     }
 
-    removeRoutingAttribution();
     state.route.loading = false;
     state.route.result = null;
+    updateRoutingAttribution();
     updateMapyLogo();
   }
 
-  function addRoutingAttribution() {
-    if (!state.map || state.route.attributionAdded) {
+  function updateRoutingAttribution() {
+    if (!state.map) {
       return;
     }
 
-    state.map.attributionControl.addAttribution(
-      '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>'
-    );
-    state.route.attributionAdded = true;
-  }
+    const shouldShowAttribution =
+      Boolean(state.route.layer) || state.directRoutes.loadedCount > 0;
 
-  function removeRoutingAttribution() {
-    if (!state.map || !state.route.attributionAdded) {
+    if (shouldShowAttribution && !state.route.attributionAdded) {
+      state.map.attributionControl.addAttribution(ROUTING_ATTRIBUTION);
+      state.route.attributionAdded = true;
       return;
     }
 
-    state.map.attributionControl.removeAttribution(
-      '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>'
-    );
-    state.route.attributionAdded = false;
+    if (!shouldShowAttribution && state.route.attributionAdded) {
+      state.map.attributionControl.removeAttribution(ROUTING_ATTRIBUTION);
+      state.route.attributionAdded = false;
+    }
   }
 
   function renderRoutePlanner() {
@@ -906,7 +1077,12 @@
   }
 
   function isFixedWaypoint(waypoint) {
-    return waypoint.id === "prague-start" || waypoint.id === "xio-apartments-bar";
+    const destinationId =
+      tripData.trip &&
+      tripData.trip.destination &&
+      tripData.trip.destination.waypoint_id;
+
+    return waypoint.status === "fixed" || waypoint.id === destinationId;
   }
 
   function fitVisibleMarkers() {
