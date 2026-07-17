@@ -40,7 +40,7 @@ jobs:
 
       - name: Verify generated waypoint pages
         run: |
-          expected_count=$(ruby -ryaml -e 'puts YAML.load_file("_data/waypoints.yml").fetch("waypoints").size')
+          expected_count=$(ruby -ryaml -e 'puts YAML.load_file("_data/waypoints.yml", aliases: true).fetch("waypoints").size')
           actual_count=$(find _site/waypoints -mindepth 2 -maxdepth 2 -name index.html | wc -l)
           echo "Generated ${actual_count} of ${expected_count} waypoint pages."
           test "${actual_count}" -eq "${expected_count}"
