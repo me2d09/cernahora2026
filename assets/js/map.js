@@ -185,14 +185,14 @@
           color: getDirectRouteColor(route),
           lineCap: "round",
           lineJoin: "round",
-          opacity: 0.3,
+          opacity: 0.58,
           weight: 5
         }
       }).addTo(state.map);
 
       state.directRoutes.layers.push(layer);
       state.directRoutes.loadedCount = state.directRoutes.layers.length;
-      updateDirectRouteLegend(route, "ready");
+      updateDirectRouteLegend(route, "ready", result.duration);
       updateRoutingAttribution();
       updateMapyLogo();
     } catch (error) {
@@ -255,6 +255,7 @@
 
     directRoutes.forEach(function (route) {
       const item = createElement("div", "direct-route-legend-item is-loading");
+      item.title = route.description || route.name || "Trasa do XIO";
       const swatch = createElement("i", "direct-route-swatch");
       swatch.style.backgroundColor = getDirectRouteColor(route);
       item.appendChild(swatch);
@@ -273,7 +274,7 @@
     });
   }
 
-  function updateDirectRouteLegend(route, status) {
+  function updateDirectRouteLegend(route, status, duration) {
     const item =
       route &&
       typeof route.id === "string" &&
@@ -291,10 +292,14 @@
       return;
     }
 
-    statusElement.textContent =
-      status === "error"
-        ? "Trasu se nepodařilo načíst."
-        : route.description || "Nejrychlejší varianta autem";
+    if (status === "error") {
+      statusElement.textContent = "Trasu se nepodařilo načíst.";
+      return;
+    }
+
+    statusElement.textContent = Number.isFinite(Number(duration))
+      ? formatRouteDuration(duration) + " autem"
+      : "Doba jízdy není dostupná.";
   }
 
   function createRoutingProvider() {

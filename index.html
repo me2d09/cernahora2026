@@ -54,39 +54,6 @@ map_page: true
       </button>
     </div>
 
-    <section class="route-planner" aria-labelledby="route-planner-title">
-      <div class="route-planner-heading">
-        <div>
-          <p class="eyebrow">Autem</p>
-          <h2 id="route-planner-title">Naplánovat trasu</h2>
-        </div>
-        <button class="route-clear-button" id="route-clear" type="button" disabled>
-          Zrušit trasu
-        </button>
-      </div>
-
-      <div class="route-planner-body">
-        <div class="route-points" id="route-points" aria-live="polite"></div>
-        <button
-          class="route-swap-button"
-          id="route-swap"
-          type="button"
-          aria-label="Obrátit pořadí trasy"
-          title="Obrátit pořadí trasy"
-          disabled
-        >
-          ⇄
-        </button>
-        <button class="route-calculate-button" id="route-calculate" type="button" disabled>
-          Spočítat trasu
-        </button>
-      </div>
-
-      <p class="route-status" id="route-status" aria-live="polite">
-        Přidej alespoň dva body z jejich karty na mapě (maximálně pět).
-      </p>
-    </section>
-
     <div class="map-shell">
       <div class="map-canvas-wrap">
         <div
@@ -142,6 +109,39 @@ map_page: true
         <div class="waypoint-list" id="waypoint-list"></div>
       </aside>
     </div>
+
+    <section class="route-planner" aria-labelledby="route-planner-title">
+      <div class="route-planner-heading">
+        <div>
+          <p class="eyebrow">Autem</p>
+          <h2 id="route-planner-title">Naplánovat trasu</h2>
+        </div>
+        <button class="route-clear-button" id="route-clear" type="button" disabled>
+          Zrušit trasu
+        </button>
+      </div>
+
+      <div class="route-planner-body">
+        <div class="route-points" id="route-points" aria-live="polite"></div>
+        <button
+          class="route-swap-button"
+          id="route-swap"
+          type="button"
+          aria-label="Obrátit pořadí trasy"
+          title="Obrátit pořadí trasy"
+          disabled
+        >
+          ⇄
+        </button>
+        <button class="route-calculate-button" id="route-calculate" type="button" disabled>
+          Spočítat trasu
+        </button>
+      </div>
+
+      <p class="route-status" id="route-status" aria-live="polite">
+        Přidej alespoň dva body z jejich karty na mapě (maximálně pět).
+      </p>
+    </section>
   </section>
 </main>
 

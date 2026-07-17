@@ -266,7 +266,7 @@ h1 {
 }
 
 .route-planner {
-  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
   padding: 0.9rem 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -453,7 +453,8 @@ h1 {
 .map-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
-  min-height: min(72vh, 780px);
+  height: clamp(620px, 72vh, 780px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -463,13 +464,14 @@ h1 {
 
 .map-canvas-wrap {
   position: relative;
-  min-height: 620px;
+  min-width: 0;
+  min-height: 0;
 }
 
 .trip-map {
   width: 100%;
   height: 100%;
-  min-height: 620px;
+  min-height: 0;
   background: #dce4de;
 }
 
@@ -581,7 +583,7 @@ h1 {
   width: 1.8rem;
   height: 0.25rem;
   border-radius: 999px;
-  opacity: 0.65;
+  opacity: 0.9;
 }
 
 .direct-route-legend-copy,
@@ -664,6 +666,8 @@ h1 {
 .waypoint-panel {
   display: flex;
   min-width: 0;
+  min-height: 0;
+  overflow: hidden;
   flex-direction: column;
   border-left: 1px solid var(--border);
   background: var(--surface);
@@ -689,6 +693,8 @@ h1 {
 }
 
 .waypoint-list {
+  min-height: 0;
+  flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -1292,6 +1298,8 @@ h1 {
 
   .map-shell {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
   }
 
   .map-canvas-wrap,
@@ -1404,10 +1412,6 @@ h1 {
 
   .direct-route-legend-item {
     padding-block: 0.2rem;
-  }
-
-  .direct-route-legend-copy small {
-    display: none;
   }
 
   .provider-button {
