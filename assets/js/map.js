@@ -49,7 +49,7 @@
     '<a href="https://api.mapy.com/copyright" target="_blank" rel="noopener noreferrer">Routing: Seznam.cz a.s. and others</a>';
 
   const state = {
-    activeGroups: new Set(),
+    activeGroups: getInitialActiveGroups(),
     activeProvider: null,
     baseLayers: {},
     directRoutes: {
@@ -130,7 +130,7 @@
     plannedRoutePane.style.pointerEvents = "none";
   }
 
-  function loadDirectRoutes() {
+  async function loadDirectRoutes() {
     renderDirectRouteLegend();
 
     if (directRoutes.length === 0) {
@@ -152,9 +152,9 @@
       return;
     }
 
-    directRoutes.forEach(function (route) {
-      loadDirectRoute(route, endpoints);
-    });
+    for (const route of directRoutes) {
+      await loadDirectRoute(route, endpoints);
+    }
   }
 
   async function loadDirectRoute(route, endpoints) {
@@ -1069,6 +1069,18 @@
         state.activeGroups.has(waypoint.route_group)
       );
     });
+  }
+
+  function getInitialActiveGroups() {
+    return new Set(
+      Array.from(
+        document.querySelectorAll(
+          '[data-route-filter][aria-pressed="true"]'
+        )
+      ).map(function (button) {
+        return button.dataset.routeFilter;
+      })
+    );
   }
 
   function getFixedWaypoints() {

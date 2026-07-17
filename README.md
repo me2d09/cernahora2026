@@ -77,7 +77,7 @@ Each valid entry from `waypoints` is rendered in two places:
 - as an accessible button in the waypoint list;
 - as a Leaflet marker with a compact popup card.
 
-The fixed start waypoint and the destination configured at `trip.destination.waypoint_id` remain visible at all times. Outbound, return, and stay locations are independent optional layers. Enabling a layer fits the viewport only to that layer's optional points, so the fixed endpoints do not affect the outbound or return zoom. Empty optional layers are shown with a zero count and disabled until data is added.
+The fixed start waypoint and the destination configured at `trip.destination.waypoint_id` remain visible at all times. Outbound, return, and stay locations are independent optional layers, with the stay layer enabled by default. Enabling a layer fits the viewport only to that layer's optional points, so the fixed endpoints do not affect the outbound or return zoom. Empty optional layers are shown with a zero count and disabled until data is added.
 
 The popup uses existing fields when available:
 
@@ -118,7 +118,7 @@ Changing, reordering, or removing a selected point clears the previous result an
 
 Mapy.com routing attribution and the provider logo remain visible while a calculated route is displayed, including when the selected base map is OpenStreetMap.
 
-The map also loads every entry from `_data/routes.yml` as a permanent translucent background corridor. Each corridor is calculated independently from the fixed start waypoint to `trip.destination.waypoint_id`, using all listed `via` coordinates in their defined order. A failed corridor request is reported in the legend without hiding the other corridors or breaking waypoint interaction. The interactive route uses a separate higher map pane so it remains visually distinct.
+The map also loads every entry from `_data/routes.yml` as a permanent translucent background corridor. Each corridor is calculated independently and sequentially from the fixed start waypoint to `trip.destination.waypoint_id`, using all listed `via` coordinates in their defined order. Sequential loading avoids bursts against the routing provider when more corridors are added. A failed corridor request is reported in the legend without hiding the other corridors or breaking waypoint interaction. The interactive route uses a separate higher map pane so it remains visually distinct.
 
 ## Project structure
 
