@@ -3965,3 +3965,288 @@ waypoints:
     google_maps: https://www.google.com/maps/search/?api=1&query=42.010495,19.151093
     info: https://www.beach-on-map.com/utjeha.html
   notes: Nejlepší blízká varianta, když chcete hlavně čistou vodu a šnorchl, nikoli písek.
+- id: return-varazdin
+  name: Varaždin, Stari Grad a historické centrum
+  short_name: Varaždin
+  order: 300
+  route_group: return
+  status: candidate
+  position:
+    lat: 46.30979
+    lon: 16.33637
+    precision: attraction
+  location:
+    country: Chorvatsko
+    country_code: HR
+    region: Varaždinská župa
+  presentation:
+    category: city
+    icon_id: city
+  summary: Kompaktní barokní město s výrazným zámkem Stari Grad, valy, pěším centrem a restauracemi.
+  highlights:
+  - zámek Stari Grad
+  - travnaté valy
+  - barokní centrum
+  - večerní procházka
+  activities:
+  - historie
+  - krátká procházka
+  - večeře
+  - fotografování
+  family:
+    child_fit: 4
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 150
+    - 210
+    best_time: late_afternoon_and_evening
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    parking: medium_easy
+    overnight_score: 4
+    restaurant_focus: true
+    road_note: Dobrá volba pro západní návratovou větev přes Varaždin a Zalaegerszeg.
+  return_stop:
+    drive_from_jajce_min_typical:
+    - 230
+    - 270
+    recommended_departure_time: '21:00'
+    night_drive_to_revnice_min_approx:
+    - 410
+    - 470
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - old-town
+  - castle
+  - restaurant
+  - evening-stop
+  - western-route
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Vara%C5%BEdin%20-%20stari%20grad.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Vara%C5%BEdin%20-%20stari%20grad.jpg
+    caption: Zámek Stari Grad ve Varaždinu
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Stari%20grad%20Vara%C5%BEdin%20i%20zelenilo.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Stari%20grad%20Vara%C5%BEdin%20i%20zelenilo.jpg
+    caption: Varaždinský zámek a jeho zelené valy
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=46.30979&mlon=16.33637#map=15/46.30979/16.33637
+    google_maps: https://www.google.com/maps/search/?api=1&query=46.30979,16.33637
+    info: https://visitvarazdin.hr/en/must-see-sights/
+  notes: Nejmalebnější a logisticky nejjednodušší varianta z trojice.
+- id: return-osijek
+  name: Osijek, Tvrđa a nábřeží Drávy
+  short_name: Osijek
+  order: 301
+  route_group: return
+  status: candidate
+  position:
+    lat: 45.5608
+    lon: 18.6951
+    precision: historic_center
+  location:
+    country: Chorvatsko
+    country_code: HR
+    region: Osijecko-baranjská župa
+  presentation:
+    category: city
+    icon_id: city
+  summary: Barokní pevnostní čtvrť Tvrđa a dlouhé nábřeží Drávy vhodné na večerní procházku a večeři.
+  highlights:
+  - Tvrđa
+  - barokní pevnost
+  - nábřeží Drávy
+  - pěší most
+  activities:
+  - historie
+  - promenáda
+  - večeře
+  - večerní město
+  family:
+    child_fit: 4
+    grandparent_fit: 5
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 150
+    - 210
+    best_time: late_afternoon_and_evening
+    crowds_in_august: medium
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: Tato zastávka je zaměřená na pevnost a promenádu, ne na koupání.
+  logistics:
+    parking: medium
+    overnight_score: 4
+    restaurant_focus: true
+    road_note: Nejlepší městská zastávka pro východní větev přes Osijek a Szekszárd.
+  return_stop:
+    drive_from_jajce_min_typical:
+    - 230
+    - 275
+    recommended_departure_time: '21:00'
+    night_drive_to_revnice_min_approx:
+    - 440
+    - 500
+  ratings:
+    wow: 4
+    kids: 4
+    swimming: 0
+    overnight: 4
+    route_fit: 5
+  tags:
+  - fortress
+  - river
+  - promenade
+  - restaurant
+  - eastern-route
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Osijek%20%28tvr%C4%91a%29.JPG?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Osijek%20%28tvr%C4%91a%29.JPG
+    caption: Historická pevnostní čtvrť Tvrđa
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Tvr%C4%91a%2C%20Osijek%2004.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Tvr%C4%91a%2C%20Osijek%2004.jpg
+    caption: Barokní architektura v Tvrđi
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=45.5608&mlon=18.6951#map=15/45.5608/18.6951
+    google_maps: https://www.google.com/maps/search/?api=1&query=45.5608,18.6951
+    info: https://www.wmf.org/monuments/tvr%C4%91-osijek
+  notes: Méně pohádkové než Varaždin, ale lepší promenáda a výraznější říční atmosféra.
+- id: return-zmajevac-batina
+  name: Zmajevac, Josić a vyhlídka Batina
+  short_name: Zmajevac + Batina
+  order: 302
+  route_group: return
+  status: candidate
+  position:
+    lat: 45.798228
+    lon: 18.800632
+    precision: restaurant
+  location:
+    country: Chorvatsko
+    country_code: HR
+    region: Baranja
+  presentation:
+    category: viewpoint
+    icon_id: viewpoint
+  summary: 'Autentická baranjská zastávka: restaurace a vinné sklepy v Zmajevaci plus monumentální vyhlídka na Dunaj u Batiny.'
+  highlights:
+  - restaurace Josić
+  - vinné sklepy v surduku
+  - památník Batinské bitvy
+  - výhled na Dunaj
+  activities:
+  - večeře
+  - krátká procházka
+  - vyhlídka
+  - fotografování
+  family:
+    child_fit: 4
+    grandparent_fit: 4
+    child_ages_considered:
+    - 4
+    - 8
+    - 11
+  visit:
+    recommended_duration_min:
+    - 150
+    - 210
+    best_time: late_afternoon_and_evening
+    crowds_in_august: low
+  swimming:
+    available: false
+    type: null
+    confidence: high
+    notes: null
+  logistics:
+    parking: easy
+    overnight_score: 4
+    restaurant_focus: true
+    road_note: Nejoriginálnější východní varianta; mezi Josićem a vyhlídkou Batina je krátký přejezd.
+  secondary_points:
+  - id: batina-monument-viewpoint
+    name: Památník Batinské bitvy a vyhlídka na Dunaj
+    position:
+      lat: 45.85467
+      lon: 18.84924
+    recommended_duration_min:
+    - 30
+    - 50
+  return_stop:
+    drive_from_jajce_min_typical:
+    - 260
+    - 310
+    recommended_departure_time: '21:00'
+    night_drive_to_revnice_min_approx:
+    - 430
+    - 490
+  ratings:
+    wow: 5
+    kids: 4
+    swimming: 0
+    overnight: 4
+    route_fit: 4
+  tags:
+  - viewpoint
+  - danube
+  - restaurant
+  - wine-cellars
+  - quiet
+  - eastern-route
+  photos:
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Zmajevac%2C%20Croatia%20-%20panoramio.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Zmajevac%2C%20Croatia%20-%20panoramio.jpg
+    caption: Vesnice Zmajevac v Baranji
+    provider: Wikimedia Commons
+    featured: true
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Wine%20route%20in%20Baranja.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Wine%20route%20in%20Baranja.jpg
+    caption: Vinařská cesta poblíž Zmajevace
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  - url: https://commons.wikimedia.org/wiki/Special:FilePath/Batina1.jpg?width=1600
+    source_page: https://commons.wikimedia.org/wiki/File:Batina1.jpg
+    caption: Památník Batinské bitvy nad Dunajem
+    provider: Wikimedia Commons
+    featured: false
+    license_note: Ověř licenci a požadované uvedení autora na source_page.
+  links:
+    openstreetmap: https://www.openstreetmap.org/?mlat=45.798228&mlon=18.800632#map=15/45.798228/18.800632
+    google_maps: https://www.google.com/maps/search/?api=1&query=45.798228,18.800632
+    info: https://josic.hr/
+    official: https://josic.hr/
+    batina_viewpoint_google_maps: https://www.google.com/maps/search/?api=1&query=45.85467,18.84924
+  notes: Restauraci je vhodné rezervovat; řidič by měl vynechat degustaci nebo ji omezit na nealkoholickou část programu.
